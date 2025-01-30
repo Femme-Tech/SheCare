@@ -4,7 +4,12 @@
     overflow: hidden; /* Ensure the image is fully visible within the container */
     width: 100%; /* Ensure the container takes the full width */
 }
-
+.logo {
+    width: 300px; /* Set the desired small size */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center the logo */
+  }
 .image {
     width: 100%; /* Ensure the image takes the full width of its container */
     height: auto; /* Maintain aspect ratio */
@@ -20,7 +25,7 @@ ul {
 header {
     position: relative;
     text-align: center;
-    padding: 10px 0;
+    padding: 5px 0;
     background-color: #00286e;
     /* Dark blue background color */
 }

@@ -9,11 +9,16 @@ ul {
 header {
     position: relative;
     text-align: center;
-    padding: 10px 0;
+    padding: 5px 0;
     background-color: #00286e;
     /* Dark blue background color */
 }
-
+.logo {
+  width: 300px; /* Set the desired small size */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+  margin: 0 auto; /* Center the logo */
+}
 header h1 {
     margin-bottom: 20px;
     color: #ffffff;
