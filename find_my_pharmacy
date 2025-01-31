@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find My Pharmacy</title>
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+    #list {
+      margin-top: 20px;
+    }
+    .place-item {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    .place-item h3 {
+      margin: 0;
+    }
+    .place-item p {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Find My Pharmacy</h1>
+  <div id="map"></div>
+  <div id="list"></div>
+
+  <script>
+    let map;
+    let service;
+    let infowindow;
+    let userLocation;
+
+    function initMap() {
+      // Initialize the map
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 0, lng: 0 }, // Default center
+        zoom: 13,
+      });
+
+      // Initialize the Places service
+      service = new google.maps.places.PlacesService(map);
+      infowindow = new google.maps.InfoWindow();
+
+      // Get the user's current location
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            userLocation = new google.maps.LatLng(
+              position.coords.latitude,
+              position.coords.longitude
+            );
+
+            // Center the map on the user's location
+            map.setCenter(userLocation);
+
+            // Search for nearby pharmacies
+            searchNearbyPlaces(userLocation);
+          },
+          (error) => {
+            alert("Error getting your location. Please enable location services.");
+            console.error(error);
+          }
+        );
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+    }
+
+    function searchNearbyPlaces(location) {
+      const request = {
+        location: location,
+        radius: 5000, // 5km radius
+        type: "pharmacy", // Search for pharmacies
+      };
+
+      service.nearbySearch(request, (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          // Sort results by rating (highest to lowest)
+          results.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+
+          // Display results on the map and in the list
+          displayResults(results);
+        }
+      });
+    }
+
+    function displayResults(results) {
+      const listElement = document.getElementById("list");
+
+      results.forEach((place) => {
+        // Create a marker for each place
+        const marker = new google.maps.Marker({
+          position: place.geometry.location,
+          map: map,
+          title: place.name,
+        });
+
+        // Add click event to show details in an info window
+        google.maps.event.addListener(marker, "click", () => {
+          infowindow.setContent(`
+            <div>
+              <h3>${place.name}</h3>
+              <p>Rating: ${place.rating || "N/A"}</p>
+              <p>Address: ${place.vicinity}</p>
+              <p>Phone: ${place.formatted_phone_number || "N/A"}</p>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=${place.geometry.location.lat()},${place.geometry.location.lng()}" target="_blank">Get Directions</a>
+            </div>
+          `);
+          infowindow.open(map, marker);
+        });
+
+        // Add place details to the list
+        const placeItem = document.createElement("div");
+        placeItem.className = "place-item";
+        placeItem.innerHTML = `
+          <h3>${place.name}</h3>
+          <p>Rating: ${place.rating || "N/A"}</p>
+          <p>Address: ${place.vicinity}</p>
+          <p>Phone: ${place.formatted_phone_number || "N/A"}</p>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=${place.geometry.location.lat()},${place.geometry.location.lng()}" target="_blank">Get Directions</a>
+        `;
+        listElement.appendChild(placeItem);
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlk3LpfE0zEmovF3GZGrl9WUYaxnjT46o&libraries=places&callback=initMap" async defer></script>
+</body>
+</html>
