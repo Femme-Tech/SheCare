@@ -1,0 +1,6 @@
+#logo {
+    width: 300px;  /* Adjust as needed */
+    height: 150px; /* Set a fixed height */
+    object-fit: cover; /* Crop excess space without stretching */
+    display: block;
+}
