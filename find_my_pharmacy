@@ -27,6 +27,27 @@
   </style>
 </head>
 <body>
+
+<header>
+  <div class="contact-info">
+    <p>Email: example@example.com</p>
+    <p>Phone: +1234567890</p>
+  </div>
+  <img src="SheCareLogo1.jpg" alt="SheCare Logo" class="logo">
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="./birtha/index.html" target="_blank" rel="noopener noreferrer">Find My Pill</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="drop.html">Any Question?</a></li>
+      <li><a href="methods.html">Contraceptive Methods</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="oc.html">Ovulation Calendar</a></li>
+      <li><a href="bot.html">Meet Convo!</a></li>
+      <li><a href="https://santos21978.softr.app/" target="_blank">Forum</a></li>
+    </ul>
+  </nav>
+</header>
   <h1>Find My Pharmacy</h1>
   <div id="map"></div>
   <div id="list"></div>
