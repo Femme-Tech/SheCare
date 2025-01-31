@@ -9,12 +9,6 @@
     width: 100%; /* Ensure the image takes the full width of its container */
     height: auto; /* Maintain aspect ratio */
 }
-.logo {
-    width: 300px; /* Set the desired small size */
-    height: auto; /* Maintain aspect ratio */
-    display: block;
-    margin: 0 auto; /* Center the logo */
-  }
 .image-text {
     position: absolute;
     top: 50%;
@@ -63,35 +57,61 @@ header h1 {
     margin: 5px 0;
 }
 
-/* Navigation bar styles */
+nav {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
 nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    white-space: nowrap; /* Prevent menu items from wrapping */
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 10px; /* Reduce space between menu items */
-}
-
-nav ul li:last-child {
-    margin-right: 0;
-}
-
-nav ul li a {
-    color: #ffffff;
+nav a {
+    color: white;
     text-decoration: none;
-    padding: 10px 20px;
-    background-color: transparent;
-    transition: background-color 0.3s;
-    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom:1rem ;
 }
 
-nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+nav a:hover {
+    background: rgba(124, 77, 255, 0.1);
+    color: #7C4DFF;
+    transform: translateY(-2px);
+}
+
+nav a i {
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
+
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    padding: 0rem;
+}
+
+.logo {
+    width: 180px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: rotate(-5deg) scale(1.05);
 }
 .image-container img {
     width: 100%; /* Ensures the image fills the container horizontally */
