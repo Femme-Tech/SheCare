@@ -543,4 +543,20 @@ nav ul li a:hover {
       transform: translateY(0);
     }
   }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.hamburger div {
+    height: 5px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+}
+
   
