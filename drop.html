@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drop a Question | SheCare</title>
+    <link rel="stylesheet" type="text/css" href="styles1.css">
+    <!-- Firebase SDK -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+</head>
+<body>
+
+<header>
+    <img src="./birtha/assets/img/birtha logo.svg" alt="SheCare Logo" class="logo">
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="methods.html">Contraceptive Methods</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="oc.html">Ovulation Calendar</a></li>
+            <li><a href="bot.html">Meet Convo!</a></li>
+            <li><a href="drop.html">Any Question?</a></li>
+        </ul>
+    </nav>
+</header>
+<ul id="questionList"></ul>
+<section class="drop-question">
+    <h2>Have a Question?</h2>
+    <p>Drop your question below and our experts will get back to you!</p>
+    
+    <form id="questionForm">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="question">Your Question:</label>
+        <textarea id="question" name="question" rows="5" placeholder="Type your question here..." required></textarea>
+
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    
+    <p id="success-message" style="display: none; color: green;">Question submitted successfully!</p>
+</section>
+
+<!-- External JS files -->
+<script type="module" src="script.js"></script>
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
