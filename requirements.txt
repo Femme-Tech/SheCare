@@ -1,6 +1,0 @@
-requests
-beautifulsoup4
-gunicorn==20.1.0
-
-flask
-flask-cors
