@@ -1,0 +1,241 @@
+/* Reset default margin and padding */
+body,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styles */
+header {
+    position: relative;
+    text-align: center;
+    padding: 5px 0;
+    background-color: #00286e;
+    /* Dark blue background color */
+}
+.logo-container {
+  display: flex;
+  justify-content: center;
+  padding: 0rem;
+}
+
+.logo {
+  width: 180px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: rotate(-5deg) scale(1.05);
+}
+header h1 {
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-size: 50px;
+}
+
+/* Contact info styles */
+.contact-info {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #ffffff;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+nav {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom:1rem ;
+}
+
+nav a:hover {
+  background: rgba(124, 77, 255, 0.1);
+  color: #7C4DFF;
+  transform: translateY(-2px);
+}
+
+nav a i {
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+      flex-wrap: wrap;
+      gap: 1rem;
+  }
+}
+/* Body Control section styles */
+.body-control {
+    background-color: #f0e3f5;
+    text-align: center;
+    padding: 10px 0px;
+    position: relative; /* Add position relative */
+  }
+  
+  .body-control-content {
+    font-family: 'Avenir Next W01', Helvetica, Arial, sans-serif;
+    top: 0;
+    right: 100%; /* Initially off screen */
+    width: 100%;
+  }
+  
+  .body-control-content.show {
+    right: 0; /* Slide in from right when show class is applied */
+  }
+  
+  .body-control-content h2 {
+    font-size: 55px;
+    margin-bottom: 20px;
+  }
+  
+  .body-control-content p {
+    font-size: 23px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .body-control-content {
+    animation: slideRight 1s ease forwards;
+  }
+  
+  @keyframes slideRight {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }}
+
+    /* Highlight box styles */
+.highlight-box {
+    background-color: #e588ce; /* Light pink background color */
+    padding: 25px;
+    margin-bottom: 20px; /* Add spacing between paragraphs */
+    border-radius: 50px;
+    display: inline-block; /* Display as inline block */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Add transition effect */
+    border: 2px solid #333; /* Dark boundary */
+  }
+  
+  .highlight-box:hover {
+    background-color: #e251be ; /* Light pink background color on hover */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow effect on hover */
+  }
+  /* Box container styles */
+.boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px; /* Adjust spacing between the existing content and the boxes */
+  }
+  
+  /* Individual box styles */
+  .box {
+    width: 300px;
+    height: 400px;
+   
+    margin-bottom: 50px; /* Adjust spacing between the boxes */
+    border: 2px solid #333;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex; /* Use flexbox to divide the box vertically */
+  flex-direction: column; /* Stack the sections vertically */
+  transition: transform 0.3s ease; /* Add transition for smooth animation */
+}
+  
+  .box .section {
+    flex: 1; /* Each section takes up equal space */
+    display: flex; /* Nested flexbox to center text vertically */
+    justify-content: center; /* Center text horizontally */
+    align-items: center; /* Center text vertically */
+  }
+  .box .upper-section {
+    background-color: #ffffff; /* Change background color of upper section */
+  }
+  .box .lower-section {
+    background-color: #00286e; /* Change background color of lower section */
+    color:#ffffff;
+}
+  .box .upper-section img {
+    max-width: 100%; /* Ensure image doesn't exceed the width of its container */
+    max-height: 100%; /* Ensure image doesn't exceed the height of its container */
+  }
+  @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.box {
+    animation: fadeInUp 1s ease forwards;
+  }
+/* Style the link to appear as normal text without an underline */
+.styled-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent */
+    font-size: 20px;
+  }
+
+  /* CSS styles for the lower section of the boxes */
+.box .lower-section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* CSS styles for the heading */
+  .box .lower-section h3 {
+    margin-top: 0px;
+    font-size: 25px;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+  }
+  .box .lower-section p {
+    margin: 0;
+    font-size: 18px;
+    margin-top: 0px;
+    text-align: center;
+  }
+
+  /* CSS styles for the link */
+  .box .lower-section a {
+    color: #46a2ed; /* Inherit color from parent */
+    margin-top: 25px; /* Adjust spacing between elements */
+    font-size:20px ;
+    font-family: 'Avenir Next W01';
+    margin-bottom: 0px;
+  }
+  .box .lower-section:hover {
+    transform: scale(1.1); /* Increase size by 10% on hover */
+  }
+  
+  .section {
+    width: 100%; /* Set section width to 100% */
+    height: 50%; /* Set section height to 50% */
+  }
+  

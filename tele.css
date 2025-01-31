@@ -1,0 +1,107 @@
+.image-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden; /* Ensure the image is fully visible within the container */
+    width: 100%; /* Ensure the container takes the full width */
+}
+.logo {
+    width: 300px; /* Set the desired small size */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto; /* Center the logo */
+  }
+.image {
+    width: 100%; /* Ensure the image takes the full width of its container */
+    height: auto; /* Maintain aspect ratio */
+}
+/* Reset default margin and padding */
+body,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styles */
+header {
+    position: relative;
+    text-align: center;
+    padding: 5px 0;
+    background-color: #00286e;
+    /* Dark blue background color */
+}
+
+header h1 {
+    margin-bottom: 20px;
+    color: #ffffff;
+    font-size: 50px;
+}
+
+/* Contact info styles */
+.contact-info {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #ffffff;
+}
+
+.contact-info p {
+    margin: 5px 0;
+}
+
+/* Navigation bar styles */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap; /* Prevent menu items from wrapping */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px; /* Reduce space between menu items */
+}
+
+nav ul li:last-child {
+    margin-right: 0;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: transparent;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+/* CSS styles for telehealth website */
+/* CSS styles for telehealth website */
+.office-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.office-box {
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    background-color: rgb(181, 215, 255);
+}
+
+.office-info {
+    text-align: center;
+    font-size: 20px;
+}
+
+.office-info b {
+    font-weight: bold;
+}
+body{
+    background-color: rgb(226, 226, 225);
+}

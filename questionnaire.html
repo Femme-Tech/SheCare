@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SheCare - Questionnaire</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="contact-info">
+    <p>Email: example@example.com</p>
+    <p>Phone: +1234567890</p>
+  </div>
+  <img src="SheCareLogo1.jpg" alt="SheCare Logo" class="logo">
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="https://www.birtha.online/">Find My Pill</a></li>
+       <li><a href="faq.html">FAQ</a></li> <!-- Move FAQ before Contraceptive Methods -->
+       <li><a href="methods.html">Contraceptive Methods</a></li>
+       <li><a href="blog.html">Blog</a></li>
+       <li><a href="oc.html">Ovulation Calendar</a></li>
+       
+      
+    </ul>
+  </nav>
+</header>
+
+<section id="questionnaire">
+  <div class="content">
+    <h2>Questionnaire</h2>
+    <form id="quiz">
+      <div class="question">
+        <label for="wife-age">1. Wife's age (numerical):</label>
+        <input type="number" id="wife-age" name="wife-age" required>
+      </div>
+      <div class="question">
+        <label for="wife-education">2. Wife's education (categorical):</label>
+        <select id="wife-education" name="wife-education" required>
+          <option value="1">1 - No formal education</option>
+          <option value="2">2 - Primary education</option>
+          <option value="3">3 - Secondary education</option>
+          <option value="4">4 - University degree or higher</option>
+        </select>
+      </div>
+      <div class="question">
+        <label for="husband-education">3. Husband's education (categorical):</label>
+        <select id="husband-education" name="husband-education" required>
+          <option value="1">1 - No formal education</option>
+          <option value="2">2 - Primary education</option>
+          <option value="3">3 - Secondary education</option>
+          <option value="4">4 - University degree or higher</option>
+        </select>
+      </div>
+      <div class="question">
+        <label for="children-born">4. Number of children ever born (numerical):</label>
+        <input type="number" id="children-born" name="children-born" required>
+      </div>
+      <div class="question">
+        <label for="wife-religion">5. Wife's religion (binary):</label>
+        <select id="wife-religion" name="wife-religion" required>
+          <option value="0">0 - Non-Islam</option>
+          <option value="1">1 - Islam</option>
+        </select>
+      </div>
+      <div class="question">
+        <label for="wife-working">6. Wife's now working? (binary):</label>
+        <select id="wife-working" name="wife-working" required>
+          <option value="0">0 - Yes</option>
+          <option value="1">1 - No</option>
+        </select>
+      </div>
+      <div class="question">
+        <label for="husband-occupation">7. Husband's occupation (categorical):</label>
+        <select id="husband-occupation" name="husband-occupation" required>
+          <option value="1">1 - Unskilled manual labor</option>
+          <option value="2">2 - Semi-skilled manual labor</option>
+          <option value="3">3 - Clerical service</option>
+          <option value="4">4 - Managerial/professional position</option>
+        </select>
+      </div>
+      <div class="question">
+        <label for="living-standard">8. Standard-of-living index (categorical):</label>
+        <select id="living-standard" name="living-standard" required>
+          <option value="1">1 - Low</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4 - High</option>
+        </select>
+      </div>
+      <div class="question">
+        <label for="media-exposure">9. Media exposure (binary):</label>
+        <select id="media-exposure" name="media-exposure" required>
+          <option value="0">0 - Good</option>
+          <option value="1">1 - Not good</option>
+        </select>
+      </div>
+      <div class="question">
+        <label for="contraceptive-method">10. Contraceptive method used (class attribute):</label>
+        <select id="contraceptive-method" name="contraceptive-method" required>
+          <option value="1">1 - No-use</option>
+          <option value="2">2 - Long-term</option>
+          <option value="3">3 - Short-term</option>
+        </select>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</section>
+
+</body>
+</html>

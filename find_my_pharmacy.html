@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find My Pharmacy</title>
+  <style>
+    /* Enhanced CSS */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+header {
+    position: relative;
+    text-align: center;
+    padding: 5px 0;
+    background-color: #00286e;
+    /* Dark blue background color */
+}
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    #map {
+      height: 400px;
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    #list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .place-item {
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .place-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .place-item h3 {
+      margin: 0;
+      font-size: 20px;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+    body,
+ul {
+    margin: 0;
+    padding: 0;
+}
+    .place-item p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .place-item .rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .place-item .rating span {
+      font-size: 16px;
+      font-weight: 500;
+      color: #f39c12;
+    }
+
+    .place-item .rating .stars {
+      color: #f1c40f;
+      font-size: 18px;
+    }
+
+    .place-item a {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 16px;
+      background-color: #3498db;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+
+    .place-item a:hover {
+      background-color: #2980b9;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      .place-item h3 {
+        font-size: 18px;
+      }
+
+      .place-item p {
+        font-size: 13px;
+      }
+
+      .place-item a {
+        font-size: 13px;
+        padding: 8px 12px;
+      }
+      
+    }
+    nav {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom:1rem ;
+}
+
+nav a:hover {
+    background: rgba(124, 77, 255, 0.1);
+    color: #7C4DFF;
+    transform: translateY(-2px);
+}
+
+nav a i {
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
+
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    padding: 0rem;
+}
+
+.logo {
+    width: 180px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: rotate(-5deg) scale(1.05);
+}
+  </style>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<header>
+        <div class="logo-container">
+            <img src="SheCareLogo1.jpg" alt="SheCare" class="logo">
+        </div>
+        <nav>
+    <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+        <li><a href="https://www.birtha.online/" target="_blank" rel="noopener noreferrer"><i class="fas fa-capsules"></i>PillPickr</a></li>
+        <li><a href="faq.html"><i class="fas fa-question-circle"></i>FAQ</a></li>
+        <li><a href="methods.html"><i class="fas fa-heartbeat"></i>Contraceptives</a></li>
+        <li><a href="oc.html"><i class="fas fa-calendar-alt"></i>Track Cycle</a></li>
+        <li><a href="find_my_doctor.html"><i class="fas fa-calendar-alt"></i>DocFinder</a></li>
+        <li><a href="find_my_pharmacy.html"><i class="fas fa-calendar-alt"></i>FindPharm</a></li>
+        <li><a href="bot.html"><i class="fas fa-comments"></i>HerBot</a></li>
+        <li><a href="https://santos21978.softr.app/" target="_blank"><i class="fas fa-users"></i>Forum</a></li>
+    </ul>
+</nav>
+    </header>
+<body>
+  <h1>Find My Pharmacy</h1>
+  <div id="map"></div>
+  <div id="list"></div>
+
+  <script>
+    let map;
+    let service;
+    let infowindow;
+    let userLocation;
+
+    function initMap() {
+      // Initialize the map
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 0, lng: 0 }, // Default center
+        zoom: 13,
+      });
+
+      // Initialize the Places service
+      service = new google.maps.places.PlacesService(map);
+      infowindow = new google.maps.InfoWindow();
+
+      // Get the user's current location
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            userLocation = new google.maps.LatLng(
+              position.coords.latitude,
+              position.coords.longitude
+            );
+
+            // Center the map on the user's location
+            map.setCenter(userLocation);
+
+            // Search for nearby pharmacies
+            searchNearbyPlaces(userLocation);
+          },
+          (error) => {
+            alert("Error getting your location. Please enable location services.");
+            console.error(error);
+          }
+        );
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+    }
+
+    function searchNearbyPlaces(location) {
+      const request = {
+        location: location,
+        radius: 5000, // 5km radius
+        type: "pharmacy", // Search for pharmacies
+      };
+
+      service.nearbySearch(request, (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          // Sort results by rating (highest to lowest)
+          results.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+
+          // Display results on the map and in the list
+          displayResults(results);
+        }
+      });
+    }
+
+    function displayResults(results) {
+      const listElement = document.getElementById("list");
+
+      results.forEach((place) => {
+        // Create a marker for each place
+        const marker = new google.maps.Marker({
+          position: place.geometry.location,
+          map: map,
+          title: place.name,
+        });
+
+        // Add click event to show details in an info window
+        google.maps.event.addListener(marker, "click", () => {
+          infowindow.setContent(`
+            <div>
+              <h3>${place.name}</h3>
+              <p>Rating: ${place.rating || "N/A"}</p>
+              <p>Address: ${place.vicinity}</p>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=${place.geometry.location.lat()},${place.geometry.location.lng()}" target="_blank">Get Directions</a>
+            </div>
+          `);
+          infowindow.open(map, marker);
+        });
+
+        // Add place details to the list
+        const placeItem = document.createElement("div");
+        placeItem.className = "place-item";
+        placeItem.innerHTML = `
+          <h3>${place.name}</h3>
+          <p>Address: ${place.vicinity}</p>
+          <div class="rating">
+            <span>Rating: ${place.rating || "N/A"}</span>
+            <div class="stars">${generateStarRating(place.rating)}</div>
+          </div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=${place.geometry.location.lat()},${place.geometry.location.lng()}" target="_blank">Get Directions</a>
+        `;
+        listElement.appendChild(placeItem);
+      });
+    }
+
+    // Helper function to generate star ratings
+    function generateStarRating(rating) {
+      if (!rating) return "⭐";
+      const fullStars = Math.floor(rating);
+      const halfStar = rating % 1 >= 0.5 ? "½" : "";
+      return "⭐".repeat(fullStars) + halfStar;
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlk3LpfE0zEmovF3GZGrl9WUYaxnjT46o&libraries=places&callback=initMap" async defer></script>
+</body>
+</html>
