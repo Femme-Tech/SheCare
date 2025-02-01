@@ -1,2 +1,3 @@
-# birtha
-<h1>Made as part of QHacks 2021</h1>
+PillPickr
+
+The Pill Pickr feature enables an interactive quiz for the users, tailored to modern lifestyles, focusses on finding the right contraceptive pill for you!
