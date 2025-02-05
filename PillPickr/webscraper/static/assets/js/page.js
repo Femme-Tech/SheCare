@@ -1,96 +1,104 @@
 function fn() {
-    // Safe radio button selection function
-    function safeGetRadioValue(name) {
-        var radios = document.getElementsByName(name);
-        if (!radios || radios.length === 0) {
-            console.warn(`No radio buttons found for name: ${name}`);
-            return null;
-        }
-        for (var i = 0; i < radios.length; i++) {
-            if (radios[i].checked) {
-                return radios[i].value;
-            }
-        }
-        return null;
+  // Safe radio button selection function
+  function safeGetRadioValue(name) {
+    var radios = document.getElementsByName(name);
+    if (!radios || radios.length === 0) {
+      console.warn(`No radio buttons found for name: ${name}`);
+      return null;
     }
-
-    // Variables to store selected values
-    var age = safeGetRadioValue('customRadioInline1-1-2');
-    var smoking = safeGetRadioValue('customRadioInline1-3-4');
-    var conditions = document.querySelectorAll('input[name="condtions1"]:checked');
-    var effects = document.querySelectorAll('input[name="effects1"]:checked');
-    var experiences = document.querySelectorAll('input[name="experiences1"]:checked');
-    var medications = document.querySelectorAll('input[name="meds1"]:checked');
-    var periodPreference = safeGetRadioValue('customRadioInline');
-
-    // Condition mapping
-    var conditionMap = {
-        'pcos': conditions[0] ? true : false,
-        'pdd': conditions[1] ? true : false,
-        'endo': conditions[2] ? true : false,
-        'acne': conditions[3] ? true : false
-    };
-
-    var effectMap = {
-        'hair': effects[0] ? true : false,
-        'depress': effects[1] ? true : false,
-        'mood': effects[2] ? true : false,
-        'nausea': effects[3] ? true : false,
-        'bleed': effects[4] ? true : false
-    };
-
-    var experienceMap = {
-        'clots': experiences[0] ? true : false,
-        'cancer': experiences[1] ? true : false,
-        'heart': experiences[2] ? true : false,
-        'migraines': experiences[3] ? true : false,
-        'pressure': experiences[4] ? true : false,
-        'diabetes': experiences[5] ? true : false
-    };
-
-    var medicationMap = {
-        'clona': medications[0] ? true : false,
-        'topi': medications[1] ? true : false,
-        'mela': medications[2] ? true : false,
-        'pred': medications[3] ? true : false,
-        'lora': medications[4] ? true : false,
-        'amit': medications[5] ? true : false,
-        'metform': medications[6] ? true : false
-    };
-
-    // Routing logic
-    if ((age === '35+' && smoking === 'yes') || Object.values(experienceMap).some(Boolean)) {
-        <a href="{{ url_for('minipill') }}">Get Result</a>
-
+    for (var i = 0; i < radios.length; i++) {
+      if (radios[i].checked) {
+        return radios[i].value;
+      }
     }
-    else if (conditionMap.endo) {
-        <a href="{{ url_for('previfem') }}">Get Result</a>
+    return null;
+  }
 
-    }
-    else if (conditionMap.pcos) {
-        <a href="{{ url_for('alesse') }}">Get Result</a>
+  // Variables to store selected values
+  var age = safeGetRadioValue('customRadioInline1-1-2');
+  var smoking = safeGetRadioValue('customRadioInline1-3-4');
+  var conditions = document.querySelectorAll('input[name="condtions1"]:checked');
+  var effects = document.querySelectorAll('input[name="effects1"]:checked');
+  var experiences = document.querySelectorAll('input[name="experiences1"]:checked');
+  var medications = document.querySelectorAll('input[name="meds1"]:checked');
+  var periodPreference = safeGetRadioValue('customRadioInline');
 
-    }
-    else if (conditionMap.pdd) {
-        <a href="{{ url_for('beyaz') }}">Get Result</a>
+  // Condition mapping
+  var conditionMap = {
+    'pcos': conditions[0] ? true : false,
+    'pdd': conditions[1] ? true : false,
+    'endo': conditions[2] ? true : false,
+    'acne': conditions[3] ? true : false
+  };
 
-    }
-    else if (conditionMap.acne) {
-        <a href = medicationMap.topi ? "{{ url_for('gianvi') }}" : "{{ url_for('ocella') }}">Get Result</a>;
-    }
-    else if (periodPreference === 'skip') {
-        <a href = Math.random() > 0.5 ? "{{ url_for('seasonique') }}" : "{{ url_for('seasonale') }}">Get Result</a>;
-    }
-    else if (Object.values(medicationMap).some(Boolean)) {
-        <a href="{{ url_for('velivet') }}">Get result</a>
+  var effectMap = {
+    'hair': effects[0] ? true : false,
+    'depress': effects[1] ? true : false,
+    'mood': effects[2] ? true : false,
+    'nausea': effects[3] ? true : false,
+    'bleed': effects[4] ? true : false
+  };
 
-    }
-    else if (Object.values(effectMap).some(Boolean)) {
-        <a href="{{ url_for('apri') }}">Get Result</a>
+  var experienceMap = {
+    'clots': experiences[0] ? true : false,
+    'cancer': experiences[1] ? true : false,
+    'heart': experiences[2] ? true : false,
+    'migraines': experiences[3] ? true : false,
+    'pressure': experiences[4] ? true : false,
+    'diabetes': experiences[5] ? true : false
+  };
 
-    }
-    else {
-        <a href="{{ url_for('lybrel') }}">Get Result</a>
+  var medicationMap = {
+    'clona': medications[0] ? true : false,
+    'topi': medications[1] ? true : false,
+    'mela': medications[2] ? true : false,
+    'pred': medications[3] ? true : false,
+    'lora': medications[4] ? true : false,
+    'amit': medications[5] ? true : false,
+    'metform': medications[6] ? true : false
+  };
 
-    }
+  // Pre-store URLs generated by Flask/Jinja
+  var minipillUrl = "{{ url_for('minipill') }}";
+  var previfemUrl = "{{ url_for('previfem') }}";
+  var alesseUrl   = "{{ url_for('alesse') }}";
+  var beyazUrl    = "{{ url_for('beyaz') }}";
+  var gianviUrl   = "{{ url_for('gianvi') }}";
+  var ocellaUrl   = "{{ url_for('ocella') }}";
+  var seasoniqueUrl = "{{ url_for('seasonique') }}";
+  var seasonaleUrl  = "{{ url_for('seasonale') }}";
+  var velivetUrl  = "{{ url_for('velivet') }}";
+  var apriUrl     = "{{ url_for('apri') }}";
+  var lybrelUrl   = "{{ url_for('lybrel') }}";
+
+  // Routing logic: Decide which URL to redirect to
+  if ((age === '35+' && smoking === 'yes') || Object.values(experienceMap).some(Boolean)) {
+    window.location.href = minipillUrl;
+  }
+  else if (conditionMap.endo) {
+    window.location.href = previfemUrl;
+  }
+  else if (conditionMap.pcos) {
+    window.location.href = alesseUrl;
+  }
+  else if (conditionMap.pdd) {
+    window.location.href = beyazUrl;
+  }
+  else if (conditionMap.acne) {
+    // Ternary check for the 'topi' medication
+    window.location.href = medicationMap.topi ? gianviUrl : ocellaUrl;
+  }
+  else if (periodPreference === 'skip') {
+    // Randomly choose between two URLs
+    window.location.href = Math.random() > 0.5 ? seasoniqueUrl : seasonaleUrl;
+  }
+  else if (Object.values(medicationMap).some(Boolean)) {
+    window.location.href = velivetUrl;
+  }
+  else if (Object.values(effectMap).some(Boolean)) {
+    window.location.href = apriUrl;
+  }
+  else {
+    window.location.href = lybrelUrl;
+  }
 }
