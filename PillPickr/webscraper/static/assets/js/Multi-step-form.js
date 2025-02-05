@@ -93,9 +93,13 @@ DOMstrings.stepsForm.addEventListener('click', (e) => {
   let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
 
   if (eventTarget.classList.contains(DOMstrings.stepPrevBtnClass)) {
-    activePanelNum--;
+    if (activePanelNum > 0) {
+      activePanelNum--;
+    }
   } else {
-    activePanelNum++;
+    if (activePanelNum < DOMstrings.stepFormPanels.length - 1) {
+      activePanelNum++;
+    }
   }
 
   setActiveStep(activePanelNum);
@@ -105,6 +109,8 @@ DOMstrings.stepsForm.addEventListener('click', (e) => {
 // Set the correct form height on window load
 window.addEventListener('load', () => {
   setFormHeight(getActivePanel());
+  setActiveStep(0);  // Set the first step as active
+  setActivePanel(0); // Show the first panel
 });
 
 // Adjust form height on window resize
