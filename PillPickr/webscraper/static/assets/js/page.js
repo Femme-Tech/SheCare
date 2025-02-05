@@ -1,176 +1,86 @@
-function fn(){
-
-    var u35 = false;
-    var o35 = false;
-
-    var smokeY = false;
-    var smokeN = false;
-
-    var pcos = false;
-    var pdd = false;
-    var endo = false;
-    var acne = false;
-
-    var hair = false;
-    var depress = false;
-    var mood = false;
-    var nausea = false;
-    var bleed = false;
-
-    var clots = false;
-    var cancer = false;
-    var heart = false;
-    var migraines = false;
-    var pressure = false;
-    var diabetes = false;
-
-    var clona = false;
-    var topi = false;
-    var mela = false;
-    var pred = false;
-    var lora = false;
-    var amit = false;
-    var metform = false;
-
-    var month = false;
-    var skip = false;
-    var matter = false;
-
-    var radio1 = document.getElementsByName('customRadioInline1-1-2');
-    if(radio1[0].checked){
-        u35 = true;
-    }
-    else if(radio1[1].checked){
-        o35 = true;
+function fn() {
+    // Safe radio button selection function
+    function safeGetRadioValue(name) {
+        var radios = document.getElementsByName(name);
+        if (!radios || radios.length === 0) {
+            console.warn(`No radio buttons found for name: ${name}`);
+            return null;
+        }
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                return radios[i].value;
+            }
+        }
+        return null;
     }
 
-    var radio2 = document.getElementsByName('customRadioInline1-3-4');
-    if(radio2[0].checked){
-        smokeY = true;
-    }
-    else if(radio2[1].checked){
-        smokeN = true;
-    }
+    // Variables to store selected values
+    var age = safeGetRadioValue('customRadioInline1-1-2');
+    var smoking = safeGetRadioValue('customRadioInline1-3-4');
+    var conditions = document.querySelectorAll('input[name="condtions1"]:checked');
+    var effects = document.querySelectorAll('input[name="effects1"]:checked');
+    var experiences = document.querySelectorAll('input[name="experiences1"]:checked');
+    var medications = document.querySelectorAll('input[name="meds1"]:checked');
+    var periodPreference = safeGetRadioValue('customRadioInline');
 
-    var radio3 = document.getElementsByName('condtions1');
-    if(radio3[0].checked){
-        pcos = true;
-    }
-    if(radio3[1].checked){
-        pdd = true;
-    }
-    if(radio3[2].checked){
-        endo = true;
-    }
-    if(radio3[3].checked){
-        acne = true;
-    }
+    // Condition mapping
+    var conditionMap = {
+        'pcos': conditions[0] ? true : false,
+        'pdd': conditions[1] ? true : false,
+        'endo': conditions[2] ? true : false,
+        'acne': conditions[3] ? true : false
+    };
 
-    var radio4 = document.getElementsByName('effects1');
-    if(radio4[0].checked){
-        hair = true;
-    }
-    if(radio4[1].checked){
-        depress = true;
-    }
-    if(radio4[2].checked){
-        mood = true;
-    }
-    if(radio4[3].checked){
-        nausea = true;
-    }
-    if(radio4[4].checked){
-        bleed = true;
-    }
+    var effectMap = {
+        'hair': effects[0] ? true : false,
+        'depress': effects[1] ? true : false,
+        'mood': effects[2] ? true : false,
+        'nausea': effects[3] ? true : false,
+        'bleed': effects[4] ? true : false
+    };
 
-    var radio5 = document.getElementsByName('experiences1');
-    if(radio5[0].checked){
-        clots = true;
-    }
-    if(radio5[1].checked){
-        cancer = true;
-    }
-    if(radio5[2].checked){
-        heart = true;
-    }
-    if(radio5[3].checked){
-        migraines = true;
-    }
-    if(radio5[4].checked){
-        pressure = true;
-    }
-    if(radio5[5].checked){
-        diabetes = true;
-    }
+    var experienceMap = {
+        'clots': experiences[0] ? true : false,
+        'cancer': experiences[1] ? true : false,
+        'heart': experiences[2] ? true : false,
+        'migraines': experiences[3] ? true : false,
+        'pressure': experiences[4] ? true : false,
+        'diabetes': experiences[5] ? true : false
+    };
 
-    var radio6 = document.getElementsByName('meds1');
-    if(radio6[0].checked){
-        clona = true;
-    }
-    if(radio6[1].checked){
-        topi = true;
-    }
-    if(radio6[2].checked){
-        mela = true;
-    }
-    if(radio6[3].checked){
-        pred = true;
-    }
-    if(radio6[4].checked){
-        lora = true;
-    }
-    if(radio6[5].checked){
-        amit = true;
-    }
-    if(radio6[6].checked){
-        metform = true;
-    }
+    var medicationMap = {
+        'clona': medications[0] ? true : false,
+        'topi': medications[1] ? true : false,
+        'mela': medications[2] ? true : false,
+        'pred': medications[3] ? true : false,
+        'lora': medications[4] ? true : false,
+        'amit': medications[5] ? true : false,
+        'metform': medications[6] ? true : false
+    };
 
-    var radio7 = document.getElementsByName('customRadioInline');
-    if(radio7[0].checked){
-        month = true;
-    }
-    else if(radio7[1].checked){
-        skip = true;
-    }
-    else if(radio7[2].checked){
-        matter = true;
-    }
-
-
-    if(o35 && smokeY || (clots||cancer||heart||migraines||pressure||diabetes)){
+    // Routing logic
+    if ((age === '35+' && smoking === 'yes') || Object.values(experienceMap).some(Boolean)) {
         location.href = "{{ url_for('minipill') }}";
     }
-    else if(endo){
+    else if (conditionMap.endo) {
         location.href = "{{ url_for('previfem') }}";
     }
-    else if(pcos){
+    else if (conditionMap.pcos) {
         location.href = "{{ url_for('alesse') }}";
     }
-    else if(pdd){
+    else if (conditionMap.pdd) {
         location.href = "{{ url_for('beyaz') }}";
     }
-    else if(acne){
-        if(topi){
-            location.href = "{{ url_for('gianvi') }}";
-        }
-        else {
-            location.href = "{{ url_for('ocella') }}";
-        }
+    else if (conditionMap.acne) {
+        location.href = medicationMap.topi ? "{{ url_for('gianvi') }}" : "{{ url_for('ocella') }}";
     }
-    else if(skip){
-        var rand = Math.floor(Math.random() * 2);
-        if(rand==1){
-            location.href = "{{ url_for('seasonique') }}";
-        }
-        else{
-            location.href = "{{ url_for('seasonale') }}";
-        }
+    else if (periodPreference === 'skip') {
+        location.href = Math.random() > 0.5 ? "{{ url_for('seasonique') }}" : "{{ url_for('seasonale') }}";
     }
-    else if(clona || topi || mela || pred || lora || amit || metform){
+    else if (Object.values(medicationMap).some(Boolean)) {
         location.href = "{{ url_for('velivet') }}";
     }
-    else if(hair || depress || mood || nausea || bleed ){
+    else if (Object.values(effectMap).some(Boolean)) {
         location.href = "{{ url_for('apri') }}";
     }
     else {
