@@ -4,6 +4,7 @@ from webscraper.interactions import Interactions
 from webscraper.reviews import Reviews
 
 app = Flask(__name__, template_folder="templates") 
+app = Flask(__name__, static_folder="static")
 
 @app.route("/")
 def home():
