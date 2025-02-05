@@ -19,7 +19,7 @@ const removeClasses = (elemSet, className) => {
 // Function to find the parent element with a specific class
 const findParent = (elem, parentClass) => {
   let currentNode = elem;
-  while (!currentNode.classList.contains(parentClass)) {
+  while (currentNode && !currentNode.classList.contains(parentClass)) {
     currentNode = currentNode.parentNode;
   }
   return currentNode;
@@ -40,21 +40,31 @@ const setActiveStep = (activeStepNum) => {
   });
 };
 
-// Get the active form panel
+// Get the active form panel; if none is active, default to the first panel
 const getActivePanel = () => {
-  return Array.from(DOMstrings.stepFormPanels).find(elem => elem.classList.contains('js-active'));
+  const active = Array.from(DOMstrings.stepFormPanels).find(elem => elem.classList.contains('js-active'));
+  return active || DOMstrings.stepFormPanels[0];
 };
 
 // Set the active panel based on the panel index
 const setActivePanel = (activePanelNum) => {
+  // Ensure the index is within bounds
+  if (activePanelNum < 0 || activePanelNum >= DOMstrings.stepFormPanels.length) {
+    console.warn('setActivePanel: Panel index out of bounds', activePanelNum);
+    return;
+  }
   removeClasses(DOMstrings.stepFormPanels, 'js-active');
   const activePanel = DOMstrings.stepFormPanels[activePanelNum];
   activePanel.classList.add('js-active');
   setFormHeight(activePanel);
 };
 
-// Set the form height to match the active panel's height
+// Set the form height to match the active panel's height with a guard clause
 const setFormHeight = (activePanel) => {
+  if (!activePanel) {
+    console.warn('setFormHeight: No active panel found.');
+    return;
+  }
   const activePanelHeight = activePanel.offsetHeight;
   DOMstrings.stepsForm.style.height = `${activePanelHeight}px`;
 };
@@ -102,7 +112,7 @@ window.addEventListener('resize', () => {
   setFormHeight(getActivePanel());
 });
 
-// If needed, allow changing of the animation type based on user selection
+// Allow changing of the animation type based on user selection if needed
 const animationSelect = document.querySelector('.pick-animation__select');
 if (animationSelect) {
   animationSelect.addEventListener('change', () => {
