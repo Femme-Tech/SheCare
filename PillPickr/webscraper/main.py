@@ -13,4 +13,4 @@ drugInteraction.buildInteractions()
 drugReviews = Reviews("https://www.drugs.com/comments/norethindrone/ortho-micronor.html",name)
 drugReviews.buildReviews()
 
-shutil.move(name+'.txt', 'minipills')
+
