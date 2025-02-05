@@ -5,23 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>birtha</title>
-    <link rel="stylesheet" href="webscraper/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link rel="stylesheet" href="webscraper/static/assets/css/Footer-Basic.css">
-    <link rel="stylesheet" href="webscraper/static/assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/Footer-Basic.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/Header-Blue.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="webscraper/static/assets/css/Multi-step-form.css">
-    <link rel="stylesheet" href="webscraper/static/assets/css/Registration-Form-with-Photo.css">
-    <link rel="stylesheet" href="webscraper/static/webscraper/static/assets/css/select.css">
-    <link rel="stylesheet" href="webscraper/static/assets/css/sidebar-1.css">
-    <link rel="stylesheet" href="webscraper/static/assets/css/sidebar.css">
-    <link rel="stylesheet" href="webscraper/static/assets/css/styles.css">
-    <link rel="icon" type="image/png" href="webscraper/static/assets/img/logo.png"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/Multi-step-form.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/Registration-Form-with-Photo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/select.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/sidebar-1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/sidebar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/logo.png') }}"/>
 </head>
 
 <body>
-    <header id="title"><a href="webscraper/templates/index.html"><img data-bs-hover-animate="bounce" id="logo" src="webscraper/static/assets/img/logo.png"></a></header>
+    <header id="title"><a href="{{ url_for('index') }}"><img data-bs-hover-animate="bounce" id="logo" src="{{ url_for('static', filename='assets/img/logo.png') }}"></a></header>
     <div class="container" id="maincontainer" style="padding-bottom: 20px;">
         <h1 id="drugtitle">Alesse</h1>
         <p style="font-size: 26px;">Based on your selections, Alesse is likely to be a good match for you.</p>
@@ -29,7 +29,7 @@
             <div class="col">
                 <div class="card" id="cards">
                     <div class="card-body">
-                        <div style="text-align: center;"><img src="webscraper/static/assets/img/PCOS.png" style="max-width: 40%;text-align: center;"></div>
+                        <div style="text-align: center;"><img src="{{ url_for('static', filename='assets/img/PCOS.png') }}" style="max-width: 40%;text-align: center;"></div>
                         <h4 class="card-title" id="cardtitle" style="text-align: center;">Top rated for PCOS</h4>
                         <p class="card-text" id="carddetail">Alesse received a 6.0 star rating for polycystic ovarian syndrome.</p>
                     </div>
@@ -38,7 +38,7 @@
             <div class="col">
                 <div class="card" id="cards">
                     <div class="card-body">
-                        <div><img src="webscraper/static/assets/img/Doctor.png" style="max-width: 40%;padding-bottom: inherit;"></div>
+                        <div><img src="{{ url_for('static', filename='assets/img/Doctor.png') }}" style="max-width: 40%;padding-bottom: inherit;"></div>
                         <h4 class="card-title" id="cardtitle">May interact with some medications</h4>
                         <p class="card-text" id="carddetail">This brand may not be as effective if you take prednisone, metformin, or topimarate.</p>
                     </div>
@@ -51,7 +51,7 @@
                     <div class="card-body">
                         <h4 class="card-title" id="cardtitle">Reviews</h4>
                         <div class="row">
-                            <div class="col" style="max-width: 20%;"><img src="webscraper/static/assets/img/star%20(1).png" style="max-width: 120%;"></div>
+                            <div class="col" style="max-width: 20%;"><img src="{{ url_for('static', filename='assets/img/star%20(1).png') }}" style="max-width: 120%;"></div>
                             <div class="col">
                                 <p id="review">“Alesse was the first birth control I ever took. I was 18 and had been having horrible periods. Constant, painful cramps and heavy flow. My gynecologist suggested Alesse to make my period lighter. I bled for over a month!!! Not spotting. Full on heavy bleeding with horrible cramps. I eventually stopped and decided to deal with my period. At least I knew when it would end.”</p>
                                 <p id="review">“Been on Aleese for 3 years, have a bit more acne but no hair loss. I’ve had a really good experience, no spotting if I take it properly and at the same time everyday, was only ever nauseous the first 3 days on it ever, know a lot of people on this pill this have had pretty good experiences!”</p>
@@ -69,11 +69,11 @@
             <p class="copyright">birtha © 2021</p>
         </footer>
     </div>
-    <script src="webscraper/static/assets/js/jquery.min.js"></script>
-    <script src="webscraper/static/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="webscraper/static/assets/js/bs-init.js"></script>
-    <script src="webscraper/static/assets/js/Multi-step-form.js"></script>
-    <script src="webscraper/static/assets/js/page.js"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/bs-init.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/Multi-step-form.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/page.js') }}"></script>
 </body>
 
 </html>
