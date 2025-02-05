@@ -312,7 +312,7 @@ footer {
         <nav>
     <ul>
         <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
-        <li><a href="./birtha/index.html" target="_blank" rel="noopener noreferrer"><i class="fas fa-capsules"></i>PillPickr</a></li>
+        <li><a href="https://www.birtha.online/" target="_blank" rel="noopener noreferrer"><i class="fas fa-capsules"></i>PillPickr</a></li>
         <li><a href="faq.html"><i class="fas fa-question-circle"></i>FAQ</a></li>
         <li><a href="methods.html"><i class="fas fa-heartbeat"></i>Contraceptives</a></li>
         <li><a href="oc.html"><i class="fas fa-calendar-alt"></i>Track Cycle</a></li>
@@ -336,7 +336,7 @@ footer {
        <i class="fas fa-pills feature-icon"></i>
         <h3>PillPickr: Find the right Pill</h3>
         <p>Take a quiz and get personalized pill suggestions based on your needs.</p>
-        <a href="./birtha/index.html" class="button" target="_blank" rel="noopener noreferrer">Find My Pill</a>
+        <a href="https://www.birtha.online/" class="button" target="_blank" rel="noopener noreferrer">Find My Pill</a>
     </div>
 
     <div class="feature-card">
@@ -373,7 +373,7 @@ footer {
         <i class="fas fa-venus feature-icon"></i>
         <h3>FindPharm: Get to a pharmacy</h3>
         <p>Allows you to quickly locate pharmacies offering contraceptive medications and related healthcare products for your convenience.</p>
-        <a href="pharma.html" class="button">Check it out</a>
+        <a href="find_my_pharmacy.html" class="button">Check it out</a>
     </div>
 
 </section>
@@ -626,7 +626,7 @@ footer {
   </div>
 
   <div class="forum-button">
-      <a href="forum.html" class="forum-link">Visit Forum</a>
+      <a href="https://santos21978.softr.app/" class="forum-link">Visit Forum</a>
   </div>
 </section>
 <style>/* Forum Section */
@@ -893,5 +893,25 @@ footer {
             });
         });
     </script>
+    <script>
+window.addEventListener('mouseover', initLandbot, { once: true });
+window.addEventListener('touchstart', initLandbot, { once: true });
+var myLandbot;
+function initLandbot() {
+  if (!myLandbot) {
+    var s = document.createElement('script');
+    s.type = "module"
+    s.async = true;
+    s.addEventListener('load', function() {
+      var myLandbot = new Landbot.Livechat({
+        configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-2766192-2VA6AIM9XA7WBQIS/index.json',
+      });
+    });
+    s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs';
+    var x = document.getElementsByTagName('script')[0];
+    x.parentNode.insertBefore(s, x);
+  }
+}
+</script>
 </body>
 </html>

@@ -18,12 +18,62 @@
             margin: 0;
             padding: 0;
         }
-        .logo {
-    width: 300px; /* Set the desired small size */
-    height: auto; /* Maintain aspect ratio */
-    display: block;
-    margin: 0 auto; /* Center the logo */
-  }
+        nav {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom:1rem ;
+}
+
+nav a:hover {
+    background: rgba(124, 77, 255, 0.1);
+    color: #7C4DFF;
+    transform: translateY(-2px);
+}
+
+nav a i {
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
+
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    padding: 0rem;
+}
+
+.logo {
+    width: 180px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: rotate(-5deg) scale(1.05);
+}
 
         body {
             
@@ -54,12 +104,7 @@ header h1 {
     color: #ffffff;
     font-size: 50px;
 }
-.logo {
-    width: 300px; /* Set the desired small size */
-    height: auto; /* Maintain aspect ratio */
-    display: block;
-    margin: 0 auto; /* Center the logo */
-  }
+
 
 /* Contact info styles */
 .contact-info {
@@ -73,36 +118,7 @@ header h1 {
     margin: 5px 0;
 }
 
-/* Navigation bar styles */
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    white-space: nowrap; /* Prevent menu items from wrapping */
-}
 
-nav ul li {
-    display: inline;
-    margin-right: 10px; /* Reduce space between menu items */
-}
-
-nav ul li:last-child {
-    margin-right: 0;
-}
-
-nav ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    padding: 10px 20px;
-    background-color: transparent;
-    transition: background-color 0.3s;
-    text-transform: uppercase;
-}
-
-nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-}
 
         .container {
             max-width: 1200px;
@@ -396,24 +412,24 @@ nav ul li a:hover {
     </style>
 </head>
 <body>
-    <header class="site-header">
-        <div class="contact-info">
-            <p>Email: example@example.com</p>
-            <p>Phone: +1234567890</p>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<header>
+        <div class="logo-container">
+            <img src="SheCareLogo1.jpg" alt="SheCare" class="logo">
         </div>
-        <img src="SheCareLogo1.jpg" alt="SheCare Logo" class="logo">
-       <nav>
+        <nav>
     <ul>
-     <li><a href="index.html">Home</a></li>
-     <li><a href="./birtha/index.html" target="_blank">Find My Pill</a></li>
-      <li><a href="faq.html">FAQ</a></li> <!-- Move FAQ before Contraceptive Methods -->
-      <li><a href="methods.html">Contraceptive Methods</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="ov.html">Ovulation Calendar</a></li>
-      <li><a href="forum.html">Forum</a></li>
-      
+        <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+        <li><a href="https://www.birtha.online/" target="_blank" rel="noopener noreferrer"><i class="fas fa-capsules"></i>PillPickr</a></li>
+        <li><a href="faq.html"><i class="fas fa-question-circle"></i>FAQ</a></li>
+        <li><a href="methods.html"><i class="fas fa-heartbeat"></i>Contraceptives</a></li>
+        <li><a href="oc.html"><i class="fas fa-calendar-alt"></i>Track Cycle</a></li>
+        <li><a href="find_my_doctor.html"><i class="fas fa-calendar-alt"></i>DocFinder</a></li>
+        <li><a href="find_my_pharmacy.html"><i class="fas fa-calendar-alt"></i>FindPharm</a></li>
+        <li><a href="bot.html"><i class="fas fa-comments"></i>HerBot</a></li>
+        <li><a href="https://santos21978.softr.app/" target="_blank"><i class="fas fa-users"></i>Forum</a></li>
     </ul>
-  </nav>
+</nav>
     </header>
     <div class="container">
         <div class="header">
