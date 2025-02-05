@@ -48,7 +48,6 @@ const getActivePanel = () => {
 
 // Set the active panel based on the panel index
 const setActivePanel = (activePanelNum) => {
-  // Ensure the index is within bounds
   if (activePanelNum < 0 || activePanelNum >= DOMstrings.stepFormPanels.length) {
     console.warn('setActivePanel: Panel index out of bounds', activePanelNum);
     return;
@@ -70,52 +69,56 @@ const setFormHeight = (activePanel) => {
 };
 
 // Event listener for clicking on the steps bar (progress bar)
-DOMstrings.stepsBar.addEventListener('click', (e) => {
-  const eventTarget = e.target;
-  if (!eventTarget.classList.contains(DOMstrings.stepsBtnClass)) {
-    return;
-  }
-
-  const activeStep = getActiveStep(eventTarget);
-  setActiveStep(activeStep);
-  setActivePanel(activeStep);
-});
+if (DOMstrings.stepsBar) {
+  DOMstrings.stepsBar.addEventListener('click', (e) => {
+    const eventTarget = e.target;
+    if (!eventTarget.classList.contains(DOMstrings.stepsBtnClass)) {
+      return;
+    }
+    const activeStep = getActiveStep(eventTarget);
+    setActiveStep(activeStep);
+    setActivePanel(activeStep);
+  });
+}
 
 // Event listener for Prev/Next buttons
-DOMstrings.stepsForm.addEventListener('click', (e) => {
-  const eventTarget = e.target;
-
-  if (!(eventTarget.classList.contains(DOMstrings.stepPrevBtnClass) || eventTarget.classList.contains(DOMstrings.stepNextBtnClass))) {
-    return;
-  }
-
-  const activePanel = findParent(eventTarget, DOMstrings.stepFormPanelClass);
-  let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
-
-  if (eventTarget.classList.contains(DOMstrings.stepPrevBtnClass)) {
-    if (activePanelNum > 0) {
-      activePanelNum--;
+if (DOMstrings.stepsForm) {
+  DOMstrings.stepsForm.addEventListener('click', (e) => {
+    const eventTarget = e.target;
+    if (!(eventTarget.classList.contains(DOMstrings.stepPrevBtnClass) || eventTarget.classList.contains(DOMstrings.stepNextBtnClass))) {
+      return;
     }
-  } else {
-    if (activePanelNum < DOMstrings.stepFormPanels.length - 1) {
-      activePanelNum++;
-    }
-  }
 
-  setActiveStep(activePanelNum);
-  setActivePanel(activePanelNum);
-});
+    const activePanel = findParent(eventTarget, DOMstrings.stepFormPanelClass);
+    let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
+
+    if (eventTarget.classList.contains(DOMstrings.stepPrevBtnClass)) {
+      activePanelNum = Math.max(activePanelNum - 1, 0);
+    } else {
+      activePanelNum = Math.min(activePanelNum + 1, DOMstrings.stepFormPanels.length - 1);
+    }
+
+    setActiveStep(activePanelNum);
+    setActivePanel(activePanelNum);
+  });
+}
 
 // Set the correct form height on window load
 window.addEventListener('load', () => {
-  setFormHeight(getActivePanel());
-  setActiveStep(0);  // Set the first step as active
-  setActivePanel(0); // Show the first panel
+  const activePanel = getActivePanel();
+  if (activePanel) {
+    setFormHeight(activePanel);
+  }
+  setActiveStep(0);
+  setActivePanel(0);
 });
 
 // Adjust form height on window resize
 window.addEventListener('resize', () => {
-  setFormHeight(getActivePanel());
+  const activePanel = getActivePanel();
+  if (activePanel) {
+    setFormHeight(activePanel);
+  }
 });
 
 // Wait for DOM content to be loaded before applying event listeners
