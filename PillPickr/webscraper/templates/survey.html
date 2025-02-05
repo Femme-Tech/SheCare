@@ -176,57 +176,16 @@
       DOMstrings.stepsForm.style.height = `${activePanelHeight}px`;
     };
 
-    // Event listener for clicking on the steps bar (progress bar)
-    DOMstrings.stepsBar.addEventListener('click', (e) => {
-      const eventTarget = e.target;
-      if (!eventTarget.classList.contains(DOMstrings.stepsBtnClass)) {
-        return;
-      }
-      const activeStep = getActiveStep(eventTarget);
-      setActiveStep(activeStep);
-      setActivePanel(activeStep);
-    });
-
-    // Event listener for Prev/Next buttons
-    DOMstrings.stepsForm.addEventListener('click', (e) => {
-      const eventTarget = e.target;
-      if (!(eventTarget.classList.contains(DOMstrings.stepPrevBtnClass) || eventTarget.classList.contains(DOMstrings.stepNextBtnClass))) {
-        return;
-      }
-      const activePanel = findParent(eventTarget, DOMstrings.stepFormPanelClass);
-      let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
-      if (eventTarget.classList.contains(DOMstrings.stepPrevBtnClass)) {
-        activePanelNum--;
-      } else {
-        activePanelNum++;
-      }
-      setActiveStep(activePanelNum);
-      setActivePanel(activePanelNum);
-    });
-
-    // Set the correct form height on window load
-    window.addEventListener('load', () => {
-      setFormHeight(getActivePanel());
-    });
-
-    // Adjust form height on window resize
-    window.addEventListener('resize', () => {
-      setFormHeight(getActivePanel());
-    });
-
-    // Optional: Allow changing of the animation type based on user selection
-    const animationSelect = document.querySelector('.pick-animation__select');
-    if (animationSelect) {
-      animationSelect.addEventListener('change', () => {
-        const newAnimationType = animationSelect.value;
-        DOMstrings.stepFormPanels.forEach(elem => {
-          elem.dataset.animation = newAnimationType;
-        });
+    // Event listener for step button clicks
+    DOMstrings.stepsBtns.forEach((stepBtn, index) => {
+      stepBtn.addEventListener('click', (e) => {
+        setActiveStep(index);
+        setActivePanel(index);
       });
-    }
+    });
   </script>
 
-  <!-- Other custom scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@formstone/core"></script>
   <script src="{{ url_for('static', filename='assets/js/page.js') }}"></script>
 </body>
 </html>
