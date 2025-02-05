@@ -118,13 +118,18 @@ window.addEventListener('resize', () => {
   setFormHeight(getActivePanel());
 });
 
-// Allow changing of the animation type based on user selection if needed
-const animationSelect = document.querySelector('.pick-animation__select');
-if (animationSelect) {
-  animationSelect.addEventListener('change', () => {
-    const newAnimationType = animationSelect.value;
-    DOMstrings.stepFormPanels.forEach(elem => {
-      elem.dataset.animation = newAnimationType;
+// Wait for DOM content to be loaded before applying event listeners
+document.addEventListener('DOMContentLoaded', () => {
+  // Allow changing of the animation type based on user selection if needed
+  const animationSelect = document.querySelector('.pick-animation__select');
+  if (animationSelect) {
+    animationSelect.addEventListener('change', () => {
+      const newAnimationType = animationSelect.value;
+      DOMstrings.stepFormPanels.forEach(elem => {
+        elem.dataset.animation = newAnimationType;
+      });
     });
-  });
-}
+  } else {
+    console.warn('Animation select element not found.');
+  }
+});
