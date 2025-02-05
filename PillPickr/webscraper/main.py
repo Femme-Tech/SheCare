@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Welcome to the Drug Info API"
+    return render_template("index.html")
 
 @app.route("/scrape")
 def scrape():
