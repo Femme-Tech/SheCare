@@ -139,46 +139,41 @@ function fn(){
 
 
     if(o35 && smokeY || (clots||cancer||heart||migraines||pressure||diabetes)){
-        location.href = "minipill.html";
+        location.href = "{{ url_for('minipill') }}";
     }
-
     else if(endo){
-        location.href = "previfem.html";
+        location.href = "{{ url_for('previfem') }}";
     }
     else if(pcos){
-        location.href = "alesse.html";
+        location.href = "{{ url_for('alesse') }}";
     }
     else if(pdd){
-        location.href = "beyaz.html";
+        location.href = "{{ url_for('beyaz') }}";
     }
     else if(acne){
         if(topi){
-            location.href = "gianvi.html";
+            location.href = "{{ url_for('gianvi') }}";
         }
         else {
-            location.href = "ocella.html";
+            location.href = "{{ url_for('ocella') }}";
         }
     }
     else if(skip){
         var rand = Math.floor(Math.random() * 2);
         if(rand==1){
-            location.href = "seasonique.html";
+            location.href = "{{ url_for('seasonique') }}";
         }
         else{
-            location.href = "seasonale.html";
+            location.href = "{{ url_for('seasonale') }}";
         }
     }
     else if(clona || topi || mela || pred || lora || amit || metform){
-        location.href = "velivet.html";
+        location.href = "{{ url_for('velivet') }}";
     }
     else if(hair || depress || mood || nausea || bleed ){
-        location.href = "apri.html";
+        location.href = "{{ url_for('apri') }}";
     }
     else {
-        location.href = "lybrel.html";
+        location.href = "{{ url_for('lybrel') }}";
     }
-
-
-
-
 }
