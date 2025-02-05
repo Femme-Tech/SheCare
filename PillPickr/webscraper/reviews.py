@@ -82,8 +82,10 @@ class Reviews:
             print(f"Error moving file: {e}")
 
 # Example usage:
-# Replace the URL below with the actual URL you want to scrape.
 if __name__ == "__main__":
-    url = "http://example.com/reviewpage"  # Change this to your target URL
+    url = "http://example.com/reviewpage"  # Replace with your target URL
     review_instance = Reviews(url, "ortho micronor")
     review_instance.buildReviews()
+
+    # IMPORTANT: Do not call shutil.move() here again.
+    # The buildReviews() method already handles moving the file.
