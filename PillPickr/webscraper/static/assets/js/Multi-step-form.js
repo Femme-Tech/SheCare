@@ -1,138 +1,184 @@
-// DOM elements
+//DOM elements
 const DOMstrings = {
   stepsBtnClass: 'multisteps-form__progress-btn',
-  stepsBtns: document.querySelectorAll('.multisteps-form__progress-btn'),
+  stepsBtns: document.querySelectorAll(`.multisteps-form__progress-btn`),
   stepsBar: document.querySelector('.multisteps-form__progress'),
   stepsForm: document.querySelector('.multisteps-form__form'),
   stepsFormTextareas: document.querySelectorAll('.multisteps-form__textarea'),
   stepFormPanelClass: 'multisteps-form__panel',
   stepFormPanels: document.querySelectorAll('.multisteps-form__panel'),
   stepPrevBtnClass: 'js-btn-prev',
-  stepNextBtnClass: 'js-btn-next'
-};
+  stepNextBtnClass: 'js-btn-next' };
 
-// Helper function to remove a class from a set of elements
+
+//remove class from a set of items
 const removeClasses = (elemSet, className) => {
-  elemSet.forEach(elem => elem.classList.remove(className));
+
+  elemSet.forEach(elem => {
+
+    elem.classList.remove(className);
+
+  });
+
 };
 
-// Function to find the parent element with a specific class
+//return exect parent node of the element
 const findParent = (elem, parentClass) => {
+
   let currentNode = elem;
-  while (currentNode && !currentNode.classList.contains(parentClass)) {
+
+  while (!currentNode.classList.contains(parentClass)) {
     currentNode = currentNode.parentNode;
   }
+
   return currentNode;
+
 };
 
-// Get the active step index
-const getActiveStep = (elem) => {
+//get active button step number
+const getActiveStep = elem => {
   return Array.from(DOMstrings.stepsBtns).indexOf(elem);
 };
 
-// Set the active step (and all previous steps)
-const setActiveStep = (activeStepNum) => {
+//set all steps before clicked (and clicked too) to active
+const setActiveStep = activeStepNum => {
+
+  //remove active state from all the state
   removeClasses(DOMstrings.stepsBtns, 'js-active');
+
+  //set picked items to active
   DOMstrings.stepsBtns.forEach((elem, index) => {
+
     if (index <= activeStepNum) {
       elem.classList.add('js-active');
     }
+
   });
 };
 
-// Get the active form panel; if none is active, default to the first panel
+//get active panel
 const getActivePanel = () => {
-  const active = Array.from(DOMstrings.stepFormPanels).find(elem => elem.classList.contains('js-active'));
-  return active || DOMstrings.stepFormPanels[0];
+
+  let activePanel;
+
+  DOMstrings.stepFormPanels.forEach(elem => {
+
+    if (elem.classList.contains('js-active')) {
+
+      activePanel = elem;
+
+    }
+
+  });
+
+  return activePanel;
+
 };
 
-// Set the active panel based on the panel index
-const setActivePanel = (activePanelNum) => {
-  if (activePanelNum < 0 || activePanelNum >= DOMstrings.stepFormPanels.length) {
-    console.warn('setActivePanel: Panel index out of bounds', activePanelNum);
-    return;
-  }
+//open active panel (and close unactive panels)
+const setActivePanel = activePanelNum => {
+
+  //remove active class from all the panels
   removeClasses(DOMstrings.stepFormPanels, 'js-active');
-  const activePanel = DOMstrings.stepFormPanels[activePanelNum];
-  activePanel.classList.add('js-active');
-  setFormHeight(activePanel);
+
+  //show active panel
+  DOMstrings.stepFormPanels.forEach((elem, index) => {
+    if (index === activePanelNum) {
+
+      elem.classList.add('js-active');
+
+      setFormHeight(elem);
+
+    }
+  });
+
 };
 
-// Set the form height to match the active panel's height with a guard clause
-const setFormHeight = (activePanel) => {
-  if (!activePanel) {
-    console.warn('setFormHeight: No active panel found.');
+//set form height equal to current panel height
+const formHeight = activePanel => {
+
+  const activePanelHeight = activePanel.offsetHeight;
+
+  DOMstrings.stepsForm.style.height = `${activePanelHeight}px`;
+
+};
+
+const setFormHeight = () => {
+  const activePanel = getActivePanel();
+
+  formHeight(activePanel);
+};
+
+//STEPS BAR CLICK FUNCTION
+DOMstrings.stepsBar.addEventListener('click', e => {
+
+  //check if click target is a step button
+  const eventTarget = e.target;
+
+  if (!eventTarget.classList.contains(`${DOMstrings.stepsBtnClass}`)) {
     return;
   }
-  const activePanelHeight = activePanel.offsetHeight;
-  DOMstrings.stepsForm.style.height = `${activePanelHeight}px`;
+
+  //get active button step number
+  const activeStep = getActiveStep(eventTarget);
+
+  //set all steps before clicked (and clicked too) to active
+  setActiveStep(activeStep);
+
+  //open active panel
+  setActivePanel(activeStep);
+});
+
+//PREV/NEXT BTNS CLICK
+DOMstrings.stepsForm.addEventListener('click', e => {
+
+  const eventTarget = e.target;
+
+  //check if we clicked on `PREV` or NEXT` buttons
+  if (!(eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`) || eventTarget.classList.contains(`${DOMstrings.stepNextBtnClass}`)))
+  {
+    return;
+  }
+
+  //find active panel
+  const activePanel = findParent(eventTarget, `${DOMstrings.stepFormPanelClass}`);
+
+  let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
+
+  //set active step and active panel onclick
+  if (eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`)) {
+    activePanelNum--;
+
+  } else {
+
+    activePanelNum++;
+
+  }
+
+  setActiveStep(activePanelNum);
+  setActivePanel(activePanelNum);
+
+});
+
+//SETTING PROPER FORM HEIGHT ONLOAD
+window.addEventListener('load', setFormHeight, false);
+
+//SETTING PROPER FORM HEIGHT ONRESIZE
+window.addEventListener('resize', setFormHeight, false);
+
+//changing animation via animation select !!!YOU DON'T NEED THIS CODE (if you want to change animation type, just change form panels data-attr)
+
+const setAnimationType = newType => {
+  DOMstrings.stepFormPanels.forEach(elem => {
+    elem.dataset.animation = newType;
+  });
 };
 
-// Event listener for clicking on the steps bar (progress bar)
-if (DOMstrings.stepsBar) {
-  DOMstrings.stepsBar.addEventListener('click', (e) => {
-    const eventTarget = e.target;
-    if (!eventTarget.classList.contains(DOMstrings.stepsBtnClass)) {
-      return;
-    }
-    const activeStep = getActiveStep(eventTarget);
-    setActiveStep(activeStep);
-    setActivePanel(activeStep);
-  });
-}
+//selector onchange - changing animation
+const animationSelect = document.querySelector('.pick-animation__select');
 
-// Event listener for Prev/Next buttons
-if (DOMstrings.stepsForm) {
-  DOMstrings.stepsForm.addEventListener('click', (e) => {
-    const eventTarget = e.target;
-    if (!(eventTarget.classList.contains(DOMstrings.stepPrevBtnClass) || eventTarget.classList.contains(DOMstrings.stepNextBtnClass))) {
-      return;
-    }
+animationSelect.addEventListener('change', () => {
+  const newAnimationType = animationSelect.value;
 
-    const activePanel = findParent(eventTarget, DOMstrings.stepFormPanelClass);
-    let activePanelNum = Array.from(DOMstrings.stepFormPanels).indexOf(activePanel);
-
-    if (eventTarget.classList.contains(DOMstrings.stepPrevBtnClass)) {
-      activePanelNum = Math.max(activePanelNum - 1, 0);
-    } else {
-      activePanelNum = Math.min(activePanelNum + 1, DOMstrings.stepFormPanels.length - 1);
-    }
-
-    setActiveStep(activePanelNum);
-    setActivePanel(activePanelNum);
-  });
-}
-
-// Set the correct form height on window load
-window.addEventListener('load', () => {
-  const activePanel = getActivePanel();
-  if (activePanel) {
-    setFormHeight(activePanel);
-  }
-  setActiveStep(0);
-  setActivePanel(0);
-});
-
-// Adjust form height on window resize
-window.addEventListener('resize', () => {
-  const activePanel = getActivePanel();
-  if (activePanel) {
-    setFormHeight(activePanel);
-  }
-});
-
-// Wait for DOM content to be loaded before applying event listeners
-document.addEventListener('DOMContentLoaded', () => {
-  // Allow changing of the animation type based on user selection if needed
-  const animationSelect = document.querySelector('.pick-animation__select');
-  if (animationSelect) {
-    animationSelect.addEventListener('change', () => {
-      const newAnimationType = animationSelect.value;
-      DOMstrings.stepFormPanels.forEach(elem => {
-        elem.dataset.animation = newAnimationType;
-      });
-    });
-  } else {
-    console.warn('Animation select element not found.');
-  }
+  setAnimationType(newAnimationType);
 });
