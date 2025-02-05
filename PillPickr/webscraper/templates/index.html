@@ -33,7 +33,8 @@
                     <div class="col" style="text-align: left;"><img src="{{ url_for('static', filename='assets/img/Women1.svg') }}" style="max-width: 75%;text-align: left;"></div>
                 </div>
             </div>
-            <div class="col"><a class="btn btn-primary btn-lg text-center" role="button" id="button1" href="survey.html">Take our interactive quiz</a></div>
+            <div class="col"><a class="btn btn-primary btn-lg text-center" role="button" id="button1" href="{{ url_for('survey') }}">Take our interactive quiz</a>
+
         </div>
     </div>
     <div id="footer" class="footer-basic">
