@@ -1,6 +1,6 @@
-from overview import Overview
-from interactions import Interactions
-from reviews import Reviews
+from webscraper.overview import Overview
+from webscraper.interactions import Interactions
+from webscraper.reviews import Reviews
 import shutil 
 
 name = "ortho micronor"
