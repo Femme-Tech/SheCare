@@ -224,9 +224,22 @@
         });
       });
     }
-  </script>
+<script>
+    var urls = {
+        minipill: "{{ url_for('minipill') }}",
+        previfem: "{{ url_for('previfem') }}",
+        alesse: "{{ url_for('alesse') }}",
+        beyaz: "{{ url_for('beyaz') }}",
+        gianvi: "{{ url_for('gianvi') }}",
+        ocella: "{{ url_for('ocella') }}",
+        seasonique: "{{ url_for('seasonique') }}",
+        seasonale: "{{ url_for('seasonale') }}",
+        velivet: "{{ url_for('velivet') }}",
+        apri: "{{ url_for('apri') }}",
+        lybrel: "{{ url_for('lybrel') }}"
+    };
+</script>
+<script src="{{ url_for('static', filename='assets/js/page.js') }}" defer></script>
 
-  <!-- Other custom scripts -->
-  <script src="{{ url_for('static', filename='assets/js/page.js') }}"></script>
 </body>
 </html>
