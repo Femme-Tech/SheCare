@@ -8,7 +8,8 @@ app = Flask(__name__, template_folder="templates")
 @app.route("/")
 def home():
     return render_template("index.html")
-
+def survey():
+    return render_template('survey.html')
 @app.route("/scrape")
 def scrape():
     name = "ortho micronor"
