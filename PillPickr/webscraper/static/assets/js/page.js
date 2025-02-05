@@ -60,30 +60,37 @@ function fn() {
 
     // Routing logic
     if ((age === '35+' && smoking === 'yes') || Object.values(experienceMap).some(Boolean)) {
-        location.href = "{{ url_for('minipill') }}";
+        <a href="{{ url_for('minipill') }}">Get Result</a>
+
     }
     else if (conditionMap.endo) {
-        location.href = "{{ url_for('previfem') }}";
+        <a href="{{ url_for('previfem') }}">Get Result</a>
+
     }
     else if (conditionMap.pcos) {
-        location.href = "{{ url_for('alesse') }}";
+        <a href="{{ url_for('alesse') }}">Get Result</a>
+
     }
     else if (conditionMap.pdd) {
-        location.href = "{{ url_for('beyaz') }}";
+        <a href="{{ url_for('beyaz') }}">Get Result</a>
+
     }
     else if (conditionMap.acne) {
-        location.href = medicationMap.topi ? "{{ url_for('gianvi') }}" : "{{ url_for('ocella') }}";
+        <a href = medicationMap.topi ? "{{ url_for('gianvi') }}" : "{{ url_for('ocella') }}">Get Result</a>;
     }
     else if (periodPreference === 'skip') {
-        location.href = Math.random() > 0.5 ? "{{ url_for('seasonique') }}" : "{{ url_for('seasonale') }}";
+        <a href = Math.random() > 0.5 ? "{{ url_for('seasonique') }}" : "{{ url_for('seasonale') }}">Get Result</a>;
     }
     else if (Object.values(medicationMap).some(Boolean)) {
-        location.href = "{{ url_for('velivet') }}";
+        <a href="{{ url_for('velivet') }}">Get result</a>
+
     }
     else if (Object.values(effectMap).some(Boolean)) {
-        location.href = "{{ url_for('apri') }}";
+        <a href="{{ url_for('apri') }}">Get Result</a>
+
     }
     else {
-        location.href = "{{ url_for('lybrel') }}";
+        <a href="{{ url_for('lybrel') }}">Get Result</a>
+
     }
 }
