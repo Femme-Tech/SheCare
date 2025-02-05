@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>birtha</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/Footer-Basic.css') }}">
@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <header id="title"><a href="webscraper/templates/index.html"><img data-bs-hover-animate="bounce" id="logo" src="webscraper/static/assets/img/logo.png"></a></header>
+    <header id="title"><a href="webscraper/templates/index.html"><img data-bs-hover-animate="bounce" id="logo" src="{{ url_for('static', filename='assets/img/logo.png') }}"></a></header>
     <div class="container" id="maincontainer" style="padding-bottom: 20px;">
         <h1 id="drugtitle">Lybrel</h1>
         <p style="font-size: 26px;">Based on your selections, Lybrel is likely to be a good match for you.</p>
@@ -29,7 +29,7 @@
             <div class="col">
                 <div class="card" id="cards">
                     <div class="card-body">
-                        <div style="text-align: center;"><img src="webscraper/static/assets/img/trophy.png" style="max-width: 40%;text-align: center;"></div>
+                        <div style="text-align: center;"><img src="{{ url_for('static', filename='assets/img/trophy.png') }}" style="max-width: 40%;text-align: center;"></div>
                         <h4 class="card-title" id="cardtitle" style="text-align: center;">Top rated</h4>
                         <p class="card-text" id="carddetail">Compared to other brands, Lybrel had the highest overall rating of 7.4 stars.</p>
                     </div>
@@ -38,7 +38,7 @@
             <div class="col">
                 <div class="card" id="cards">
                     <div class="card-body">
-                        <div><img src="webscraper/static/assets/img/endo.png" style="max-width: 40%;padding-bottom: inherit;"></div>
+                        <div><img src="{{ url_for('static', filename='assets/img/endo.png') }}" style="max-width: 40%;padding-bottom: inherit;"></div>
                         <h4 class="card-title" id="cardtitle">Can be used to treat endometriosis</h4>
                         <p class="card-text" id="carddetail">Some reviewers used Lybrel to alleviate symptoms of endometriosis.</p>
                     </div>
@@ -51,7 +51,7 @@
                     <div class="card-body">
                         <h4 class="card-title" id="cardtitle">Reviews</h4>
                         <div class="row">
-                            <div class="col" style="max-width: 20%;"><img src="webscraper/static/assets/img/star%20(1).png" style="max-width: 120%;"></div>
+                            <div class="col" style="max-width: 20%;"><img src="{{ url_for('static', filename='assets/img/star%20(1).png') }}" style="max-width: 120%;"></div>
                             <div class="col">
                                 <p id="review">“I've been on it for about 2 weeks and I feel zero side effects. I'm in my mid thirties and have had horrible PMDD depression for 20 freaking years! I started lybrel so I can stop my period for a while and have a break from those dark days. I was so worried lybrel would cause mood problems and I'm so relieved it has not. I give it an 8 rather than 10 because it's only been a couple of weeks. There's still time for things to go south but so far I'm so glad I started this! Only wish I'd done it sooner.”</p>
                                 <p id="review">“I have been on this pill for nearly 2 years. I have not had a single period and no spotting after the first 3 months. Which has been great because I used to have horrid cramps. On the down side I have become terribly depressed, and have gained a LOT of weight. After the pack that I'm on is out I am going off of this pill.”</p>
@@ -69,11 +69,11 @@
             <p class="copyright">birtha © 2021</p>
         </footer>
     </div>
-    <script src="webscraper/static/assets/js/jquery.min.js"></script>
-    <script src="webscraper/static/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="webscraper/static/assets/js/bs-init.js"></script>
-    <script src="webscraper/static/assets/js/Multi-step-form.js"></script>
-    <script src="webscraper/static/assets/js/page.js"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/bs-init.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/Multi-step-form.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/page.js') }}"></script>
 </body>
 
 </html>
