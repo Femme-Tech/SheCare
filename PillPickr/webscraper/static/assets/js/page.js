@@ -7,12 +7,17 @@ function fn() {
     return null;
   }
 
+  function safeQuerySelectorAll(name) {
+    var elements = document.querySelectorAll(`input[name="${name}"]:checked`);
+    return elements.length ? elements : [];
+  }
+
   var age = safeGetRadioValue('customRadioInline1-1-2');
   var smoking = safeGetRadioValue('customRadioInline1-3-4');
-  var conditions = document.querySelectorAll('input[name="condtions1"]:checked');
-  var effects = document.querySelectorAll('input[name="effects1"]:checked');
-  var experiences = document.querySelectorAll('input[name="experiences1"]:checked');
-  var medications = document.querySelectorAll('input[name="meds1"]:checked');
+  var conditions = safeQuerySelectorAll('condtions1');
+  var effects = safeQuerySelectorAll('effects1');
+  var experiences = safeQuerySelectorAll('experiences1');
+  var medications = safeQuerySelectorAll('meds1');
   var periodPreference = safeGetRadioValue('customRadioInline');
 
   var conditionMap = {
@@ -50,27 +55,30 @@ function fn() {
   };
 
   // Ensure URLs object is available
-  if (typeof urls !== 'undefined') {
-    if ((age === '35+' && smoking === 'yes') || Object.values(experienceMap).some(Boolean)) {
-      window.location.href = urls.minipill;
-    } else if (conditionMap.endo) {
-      window.location.href = urls.previfem;
-    } else if (conditionMap.pcos) {
-      window.location.href = urls.alesse;
-    } else if (conditionMap.pdd) {
-      window.location.href = urls.beyaz;
-    } else if (conditionMap.acne) {
-      window.location.href = medicationMap.topi ? urls.gianvi : urls.ocella;
-    } else if (periodPreference === 'skip') {
-      window.location.href = Math.random() > 0.5 ? urls.seasonique : urls.seasonale;
-    } else if (Object.values(medicationMap).some(Boolean)) {
-      window.location.href = urls.velivet;
-    } else if (Object.values(effectMap).some(Boolean)) {
-      window.location.href = urls.apri;
-    } else {
-      window.location.href = urls.lybrel;
-    }
+  if (typeof urls === 'undefined') {
+    console.error("URLs object is not defined. Ensure survey.html correctly initializes the URLs.");
+    return;
+  }
+
+  console.log("Form Data:", { age, smoking, conditionMap, effectMap, experienceMap, medicationMap, periodPreference });
+
+  if ((age === '35+' && smoking === 'yes') || Object.values(experienceMap).some(Boolean)) {
+    window.location.href = urls.minipill;
+  } else if (conditionMap.endo) {
+    window.location.href = urls.previfem;
+  } else if (conditionMap.pcos) {
+    window.location.href = urls.alesse;
+  } else if (conditionMap.pdd) {
+    window.location.href = urls.beyaz;
+  } else if (conditionMap.acne) {
+    window.location.href = medicationMap.topi ? urls.gianvi : urls.ocella;
+  } else if (periodPreference === 'skip') {
+    window.location.href = Math.random() > 0.5 ? urls.seasonique : urls.seasonale;
+  } else if (Object.values(medicationMap).some(Boolean)) {
+    window.location.href = urls.velivet;
+  } else if (Object.values(effectMap).some(Boolean)) {
+    window.location.href = urls.apri;
   } else {
-    console.error("URLs object is not defined. Ensure survey.html passes Flask URLs correctly.");
+    window.location.href = urls.lybrel;
   }
 }
