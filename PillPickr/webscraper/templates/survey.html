@@ -1,112 +1,152 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>birtha</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+  <title>Birtha Survey</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/Footer-Basic.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/Header-Blue.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/Multi-step-form.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/Registration-Form-with-Photo.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/select.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/sidebar-1.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/sidebar.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.css') }}">
-  <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/logo.png') }}" />
+  <link rel="icon" href="{{ url_for('static', filename='assets/img/logo.png') }}" type="image/png" />
 </head>
 <body>
-  <header id="title">
-    <a href="{{ url_for('home') }}">
-      <img data-bs-hover-animate="bounce" id="logo" src="{{ url_for('static', filename='assets/img/logo.png') }}">
-    </a>
-    <div class="row" style="color: #f4acb7;">
-      <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
-        <!-- Progress bar: first button marked as active -->
-        <div class="multisteps-form__progress">
-          <a class="btn multisteps-form__progress-btn js-active" role="button" title="Background"></a>
-          <a class="btn multisteps-form__progress-btn" role="button" title="User Info"></a>
-          <a class="btn multisteps-form__progress-btn" role="button" title="User Info">&nbsp;</a>
-          <a class="btn multisteps-form__progress-btn" role="button" title="User Info"></a>
-          <a class="btn multisteps-form__progress-btn" role="button" title="User Info">&nbsp;</a>
-          <a class="btn multisteps-form__progress-btn" role="button" title="User Info"></a>
-        </div>
-      </div>
-    </div>
-  </header>
 
-  <div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6" style="min-width: 70%;">
-          <div id="multple-step-form-n" class="container overflow-hidden" style="margin-top: 0px; margin-bottom: 10px; padding-bottom: 300px; padding-top: 10px; height: 600px; min-width: 80%;">
-            <div id="progress-bar-button" class="multisteps-form"></div>
-            <div id="multistep-start-row" class="row">
-              <div id="multistep-start-column" class="col-12 col-lg-8 m-auto">
-                <form id="main-form" class="multisteps-form__form">
-                  <!-- Note: The first panel has js-active so that it is the default panel -->
-                  <div id="single-form-next-prev-4" class="multisteps-form__panel js-active shadow p-4 rounded bg-white" data-animation="scaleIn">
-                    <h3 class="text-center multisteps-form__title" id="myLabel">
-                      Would you like to still have a period every month or skip your periods?
-                    </h3>
-                    <div id="form-content-5" class="multisteps-form__content">
-                      <div id="input-grp-double-4" class="form-row mt-4" style="max-width: 50%; margin-left: auto; margin-right: auto;">
-                        <fieldset>
-                          <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="customRadioInline6-1" class="custom-control-input" name="customRadioInline" checked value="6-1">
-                            <label id="radiobtn" class="custom-control-label" for="customRadioInline6-1">I want my period every month</label>
-                          </div>
-                          <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="customRadioInline6-2" class="custom-control-input" name="customRadioInline" value="6-2">
-                            <label id="radiobtn" class="custom-control-label" for="customRadioInline6-2">I'd like to skip my periods</label>
-                          </div>
-                          <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" id="customRadioInline6-3" class="custom-control-input" name="customRadioInline" value="6-3">
-                            <label id="radiobtn" class="custom-control-label" for="customRadioInline6-3">It doesn't matter to me!</label>
-                          </div>
-                        </fieldset>
-                      </div>
-                      <div id="next-prev-buttons-4" class="button-row d-flex mt-4">
-                        <button class="btn btn-primary js-btn-prev" id="button1" type="button" title="Prev">Back</button>
-                        <button class="btn btn-primary ml-auto js-btn-next" id="submitbutton" type="button" title="Next" onclick="fn()">Get my results!</button>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- If you have additional panels, include them here -->
-                </form>
-              </div>
+<header id="title">
+  <a href="{{ url_for('home') }}">
+    <img data-bs-hover-animate="bounce" id="logo" src="{{ url_for('static', filename='assets/img/logo.png') }}">
+  </a>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" style="min-width: 70%;">
+      <div class="multisteps-form">
+        <form id="main-form" class="multisteps-form__form">
+          
+          <!-- Step 1 -->
+          <div class="multisteps-form__panel js-active" data-animation="scaleIn">
+            <h3 class="text-center">Would you like to still have a period every month or skip your periods?</h3>
+            <div class="form-row mt-4">
+              <fieldset>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="radio1" class="custom-control-input" name="period-choice" checked value="monthly">
+                  <label class="custom-control-label" for="radio1">I want my period every month</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="radio2" class="custom-control-input" name="period-choice" value="skip">
+                  <label class="custom-control-label" for="radio2">I'd like to skip my periods</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" id="radio3" class="custom-control-input" name="period-choice" value="no-preference">
+                  <label class="custom-control-label" for="radio3">It doesn't matter to me!</label>
+                </div>
+              </fieldset>
+            </div>
+            <div class="d-flex mt-4">
+              <button class="btn btn-primary js-btn-prev" type="button">Back</button>
+              <button class="btn btn-primary ml-auto js-btn-next" type="button">Next</button>
             </div>
           </div>
-        </div>
-        <div class="col" style="text-align: left;">
-          <img src="{{ url_for('static', filename='assets/img/Heart.svg') }}" style="max-width: 60%;">
-        </div>
+          
+          <!-- Step 2 -->
+          <div class="multisteps-form__panel" data-animation="scaleIn">
+            <h3 class="text-center">What is your age?</h3>
+            <div class="form-group">
+              <input type="number" class="form-control" name="age" placeholder="Enter your age" required>
+            </div>
+            <div class="d-flex mt-4">
+              <button class="btn btn-primary js-btn-prev" type="button">Back</button>
+              <button class="btn btn-primary ml-auto js-btn-next" type="button">Next</button>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="multisteps-form__panel" data-animation="scaleIn">
+            <h3 class="text-center">Do you have any health conditions?</h3>
+            <div class="form-group">
+              <textarea class="form-control" name="health-condition" placeholder="Please describe any health conditions (if any)"></textarea>
+            </div>
+            <div class="d-flex mt-4">
+              <button class="btn btn-primary js-btn-prev" type="button">Back</button>
+              <button class="btn btn-primary ml-auto js-btn-next" type="button">Next</button>
+            </div>
+          </div>
+
+          <!-- Final Step -->
+          <div class="multisteps-form__panel" data-animation="scaleIn">
+            <h3 class="text-center">Thank you for completing the survey!</h3>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+          </div>
+
+        </form>
       </div>
     </div>
+    <div class="col">
+      <img src="{{ url_for('static', filename='assets/img/Heart.svg') }}" style="max-width: 60%;">
+    </div>
   </div>
+</div>
 
-  <section></section>
-  <div class="footer-basic">
-    <footer>
-      <p id="disclaimer" style="text-align: center;">
-        Disclaimer: This questionnaire should not be taken as medical advice. Always speak to a medical professional about which type of hormonal birth control is best for you.
-        <br><br>
-      </p>
-      <p class="copyright">birtha © 2021</p>
-    </footer>
-  </div>
+<footer class="footer-basic">
+  <footer>
+    <p style="text-align: center;">
+      Disclaimer: This questionnaire should not be taken as medical advice. Always speak to a medical professional about which type of hormonal birth control is best for you.
+      <br><br>
+    </p>
+    <p class="copyright">birtha © 2021</p>
+  </footer>
+</footer>
 
-  <!-- jQuery and Bootstrap JS -->
-  <script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='assets/js/bs-init.js') }}"></script>
+<!-- jQuery, Bootstrap JS and Multi-step-form JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"></script>
 
-  <!-- Multi-step-form JS with corrections -->
 <script src="{{ url_for('static', filename='assets/js/Multi-step-form.js') }}"></script>
 
+<script>
+  // JavaScript for handling multi-step form logic
+  document.addEventListener('DOMContentLoaded', function () {
+    const nextButtons = document.querySelectorAll('.js-btn-next');
+    const prevButtons = document.querySelectorAll('.js-btn-prev');
+    const panels = document.querySelectorAll('.multisteps-form__panel');
+    let currentPanel = 0;
+
+    // Show the correct panel based on index
+    function showPanel(index) {
+      panels.forEach((panel, i) => {
+        panel.classList.toggle('js-active', i === index);
+      });
+    }
+
+    // Go to next panel
+    nextButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (currentPanel < panels.length - 1) {
+          currentPanel++;
+          showPanel(currentPanel);
+        }
+      });
+    });
+
+    // Go to previous panel
+    prevButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (currentPanel > 0) {
+          currentPanel--;
+          showPanel(currentPanel);
+        }
+      });
+    });
+
+    // Initialize the form with the first panel visible
+    showPanel(currentPanel);
+  });
+</script>
 <script>
   var urls = {
     minipill: "{{ url_for('minipill') }}",
