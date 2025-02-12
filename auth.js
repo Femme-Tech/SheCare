@@ -108,9 +108,9 @@ function setupLoginForm() {
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            sessionStorage.setItem('userEmail', email);
             sessionStorage.setItem('isLoggedIn', 'true');
-            window.location.href = 'index.html';
+             sessionStorage.setItem('userEmail', email); // Use actual email
+             window.location.href = 'index.html';
         } catch (error) {
             console.error("Login Error:", error);
             errorEl.textContent = "Invalid email or password. Please try again.";

@@ -7,10 +7,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
-      --primary: #7c4dff;
-      --secondary: #ff4081;
+      --primary: #7C4DFF;
+      --secondary: #FF4081;
       --background: #f8f5fe;
-      --text: #2a2a2a;
+      --text: #2A2A2A;
     }
     * {
       margin: 0;
@@ -23,7 +23,7 @@
       color: var(--text);
       line-height: 1.6;
     }
-    /* Floating Navigation */
+    /* Header & Navigation */
     header {
       position: fixed;
       top: 0;
@@ -71,7 +71,7 @@
       color: var(--primary);
       transform: translateY(-2px);
     }
-    /* Animated Hero Section */
+    /* Hero Section */
     .hero {
       margin-top: 0;
       padding: 4rem 2rem;
@@ -104,7 +104,7 @@
       margin: 0 auto 2rem;
       color: #666;
     }
-    /* Feature Cards Grid */
+    /* Features Section */
     .features {
       padding: 4rem 2rem;
       display: grid;
@@ -117,7 +117,7 @@
       background: white;
       padding: 2rem;
       border-radius: 1.5rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       transition: transform 0.3s ease;
       position: relative;
       overflow: hidden;
@@ -152,18 +152,18 @@
       border-radius: 25px;
       font-weight: bold;
       transition: all 0.3s ease-in-out;
-      box-shadow: 0 4px 8px rgba(255, 107, 129, 0.3);
+      box-shadow: 0 4px 8px rgba(255,107,129,0.3);
       margin-top: 15px;
     }
     .button:hover {
       background: linear-gradient(135deg, #ff4757, #ff6b81);
       transform: scale(1.05);
-      box-shadow: 0 6px 12px rgba(255, 71, 87, 0.4);
+      box-shadow: 0 6px 12px rgba(255,71,87,0.4);
     }
     /* Video Carousel */
     .video-carousel {
       padding: 4rem 2rem;
-      background: rgba(124, 77, 255, 0.05);
+      background: rgba(124,77,255,0.05);
     }
     .video-grid {
       display: grid;
@@ -176,7 +176,7 @@
       background: white;
       border-radius: 1.5rem;
       overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     }
     .video-card iframe {
       width: 100%;
@@ -185,19 +185,6 @@
     }
     .video-info {
       padding: 1.5rem;
-    }
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      nav ul {
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .features {
-        grid-template-columns: 1fr;
-      }
     }
     /* Footer */
     footer {
@@ -218,7 +205,7 @@
     .social-links a:hover {
       color: #ffcc00;
     }
-    /* Login Button and User Info */
+    /* Login Button & User Info */
     .login-container {
       position: absolute;
       top: 20px;
@@ -233,19 +220,23 @@
       align-items: center;
       justify-content: center;
       padding: 10px 20px;
-      background: linear-gradient(135deg, #7c4dff, #ff4081);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
       text-decoration: none;
       border-radius: 30px;
       font-weight: 600;
       letter-spacing: 0.5px;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(124, 77, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(124,77,255,0.3);
+      gap: 10px;
     }
     .login-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(124, 77, 255, 0.4);
-      background: linear-gradient(135deg, #ff4081, #7c4dff);
+      box-shadow: 0 6px 20px rgba(124,77,255,0.4);
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+    }
+    .login-btn i {
+      font-size: 1.2rem;
     }
     .user-info {
       display: none;
@@ -253,8 +244,9 @@
       gap: 10px;
       color: white;
       padding: 10px 20px;
-      background: rgba(124, 77, 255, 0.2);
+      background: rgba(124,77,255,0.2);
       border-radius: 30px;
+      transition: all 0.3s ease;
     }
     .user-email {
       font-weight: 500;
@@ -268,54 +260,347 @@
     .logout-btn:hover {
       color: #7c4dff;
     }
+    /* HerBot Section */
+    .herbot-section {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: #fff;
+      margin-top: 2rem;
+    }
+    .herbot-section h2 {
+      font-size: 2.8rem;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+    .herbot-section p {
+      font-size: 1.2rem;
+      color: #666;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+    .herbot-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .herbot-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    .herbot-card:hover {
+      transform: translateY(-10px);
+    }
+    .herbot-button-container {
+      margin-top: 2rem;
+    }
+    .herbot-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: white;
+      background: var(--primary);
+      border-radius: 2rem;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .herbot-button:hover {
+      background: var(--secondary);
+    }
+    /* Forum Section */
+    .forum-section {
+      padding: 4rem 2rem;
+      background: var(--background);
+      text-align: center;
+    }
+    .forum-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .forum-section p {
+      font-size: 1.2rem;
+      color: #666;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+    .forum-features {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .forum-feature {
+      background: white;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      width: 30%;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .forum-feature:hover {
+      transform: translateY(-10px);
+    }
+    .forum-feature i {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .forum-feature h3 {
+      font-size: 1.5rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .forum-feature p {
+      font-size: 1rem;
+      color: #666;
+    }
+    .forum-button {
+      margin-top: 2rem;
+    }
+    .forum-link {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border-radius: 2rem;
+      transition: background 0.3s ease;
+    }
+    .forum-link:hover {
+      background: var(--secondary);
+    }
+    /* Team Section */
+    .team-section {
+      padding: 4rem 0;
+      background: #f8f5fe;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .team-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      width: 100%;
+      max-width: 1400px;
+      align-items: center;
+      padding: 0 4rem;
+    }
+    .team-image {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-image img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    .team-names {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-size: 1.5rem;
+      background: rgba(0,0,0,0.7);
+      padding: 1rem 0;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .team-image:hover .team-names {
+      transform: translateY(0);
+    }
+    .team-names p {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    .team-info-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+    }
+    .info-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.3s ease;
+      width: 100%;
+    }
+    .info-box:hover {
+      transform: translateY(-5px);
+    }
+    .info-box h3 {
+      color: var(--primary);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .info-box p {
+      color: #666;
+      font-size: 1rem;
+    }
+    @media (max-width: 1024px) {
+      .team-container {
+        flex-direction: column;
+        padding: 0 2rem;
+      }
+      .team-info-grid {
+        grid-template-columns: 1fr 1fr;
+        max-width: 100%;
+      }
+    }
+    @media (max-width: 768px) {
+      .team-info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    /* Landbot Icon Style */
+    .landbot-icon {
+      display: none; /* Hidden by default */
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 2.5rem;
+      color: var(--primary);
+      cursor: pointer;
+      z-index: 1001;
+      transition: all 0.3s ease;
+    }
+
+    .landbot-icon.active {
+      display: block;
+    }
+    /* Blog Section (Provided Styles) */
+    .blog-section {
+      padding: 4rem 2rem;
+      background: var(--background);
+      text-align: center;
+    }
+    .blog-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .blog-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .blog-post {
+      background: white;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      width: 30%;
+      text-align: left;
+      transition: transform 0.3s ease;
+    }
+    .blog-post:hover {
+      transform: translateY(-10px);
+    }
+    .blog-post img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+    .blog-post h3 {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      color: var(--text);
+    }
+    .blog-post p {
+      font-size: 1rem;
+      color: #666;
+      margin-top: 1rem;
+    }
+    .blog-post a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      display: block;
+      margin-top: 1rem;
+    }
+    .blog-post a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      .blog-post {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
     <div class="login-container">
-      <a href="auth.html" class="login-btn">
-        <i class="fas fa-user"></i>
-        Login / Sign Up
-      </a>
-      <!-- This container will display the user's email and logout option after login -->
-      <div class="user-info">
-        <span class="user-email"></span>
-        <span class="logout-btn">Logout</span>
+        <a href="auth.html" class="login-btn" id="loginButton">
+          <i class="fas fa-user"></i>
+          Login / Sign Up
+        </a>
+        <div class="user-info" id="userInfo">
+          <span class="user-email" id="userEmail"></span>
+          <span class="logout-btn" id="logoutButton">Logout</span>
+        </div>
       </div>
-    </div>
     <div class="logo-container">
-      <img src="SheCareLogo1.jpg" alt="SheCare" class="logo" />
+      <img src="SheCareLogo1.jpg" alt="SheCare" class="logo">
     </div>
     <nav>
       <ul>
         <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
-        <!-- Protected links appear normal -->
         <li><a href="https://shecare.onrender.com/" class="protected-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-capsules"></i>PillPickr</a></li>
         <li><a href="faq.html"><i class="fas fa-question-circle"></i>FAQ</a></li>
         <li><a href="methods.html"><i class="fas fa-heartbeat"></i>Contraceptives</a></li>
-        <li><a href="oc.html"><i class="fas fa-calendar-alt"></i>Track Cycle</a></li>
+        <li><a href="oc.html" class="protected-link"><i class="fas fa-calendar-alt"></i>Track Cycle</a></li>
         <li><a href="find_my_doctor.html" class="protected-link"><i class="fas fa-calendar-alt"></i>DocFinder</a></li>
         <li><a href="find_my_pharmacy.html" class="protected-link"><i class="fas fa-calendar-alt"></i>FindPharm</a></li>
         <li><a href="bot.html" class="protected-link"><i class="fas fa-comments"></i>HerBot</a></li>
-        <li><a href="https://santos21978.softr.app/" target="_blank"><i class="fas fa-users"></i>Forum</a></li>
+        <li><a href="https://santos21978.softr.app/" class="protected-link" target="_blank"><i class="fas fa-users"></i>Forum</a></li>
       </ul>
     </nav>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero">
     <h1>Welcome to SheCare: Aware, Prepare, Care!</h1>
-    <p>
-      Empowering women with the knowledge and tools for informed contraceptive choices.<br />
-      By offering reliable information and personalized guidance, we aim to support women in making confident decisions about their reproductive health.
-    </p>
+    <p>Empowering women with the knowledge and tools for informed contraceptive choices.<br>
+    By offering reliable information and personalized guidance, we aim to support women in making confident decisions about their reproductive health.</p>
   </section>
 
+  <!-- Features Section -->
   <section class="features">
-    <!-- Feature Cards -->
     <div class="feature-card">
       <i class="fas fa-pills feature-icon"></i>
       <h3>PillPickr: Find the right Pill</h3>
       <p>Take a quiz and get personalized pill suggestions based on your needs.</p>
+      <!-- If this link is to be protected, add class "protected" to the button element -->
       <a href="https://shecare.onrender.com/" class="button protected" target="_blank" rel="noopener noreferrer">Find My Pill</a>
     </div>
     <div class="feature-card">
@@ -334,7 +619,7 @@
       <i class="fas fa-calendar-alt feature-icon"></i>
       <h3>Cycle Tracking</h3>
       <p>Smart ovulation calendar with fertility insights. Helping you monitor fertility and plan accordingly.</p>
-      <a href="oc.html" class="button">Check Calendar</a>
+      <a href="oc.html" class="button protected">Check Calendar</a>
     </div>
     <div class="feature-card">
       <i class="fas fa-comments feature-icon"></i>
@@ -350,8 +635,143 @@
     </div>
   </section>
 
-  <!-- Other sections (video carousel, blog, HerBot, forum, team, etc.) go here. -->
+  <!-- Video Carousel Section -->
+  <section class="video-carousel">
+    <div class="video-grid">
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/E9Z1pLKZabk" allowfullscreen></iframe>
+        <div class="video-info">
+          <h4>Contraception Basics</h4>
+          <p>Understanding your options</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/RyVtu2wGNCM" allowfullscreen></iframe>
+        <div class="video-info">
+          <h4>Non-Hormonal Methods</h4>
+          <p>Exploring alternative choices</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/EktKDiUVcR8" allowfullscreen></iframe>
+        <div class="video-info">
+          <h4>Ovulation & Fertility</h4>
+          <p>Understanding the fertile window</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Blog Section -->
+  <section id="blog" class="blog-section">
+    <h2>Read Blogs!</h2>
+    <div class="blog-container">
+      <div class="blog-post">
+        <img src="blog1.jpg" alt="Blog Post Image 1">
+        <h3>How Do I Ask A Partner To Use A Condom?</h3>
+        <p>Asking a partner to use a condom is one of those things which sounds incredibly simple but can be incredibly daunting when the time itself arises...</p>
+        <a href="https://medium.com/safely/how-do-i-ask-a-partner-to-use-a-condom-544783195488" target="_blank" rel="noopener noreferrer">Read more</a>
+      </div>
+      <div class="blog-post">
+        <img src="blog2.jpg" alt="Blog Post Image 2">
+        <h3>What to Know about Emergency Contraception</h3>
+        <p>Emergency contraception is taken when there has been a failed birth control method or when there isn’t one used. This blog will educate the readers on the morning-after pill...</p>
+        <a href="https://www.starhealth.in/blog/morning-after-pill" target="_blank" rel="noopener noreferrer">Read more</a>
+      </div>
+      <div class="blog-post">
+        <img src="blog3.jpg" alt="Blog Post Image 3">
+        <h3>How to Talk to Your Healthcare Provider About Birth Control</h3>
+        <p>The best type of contraception for you depends on your medical history, lifestyle, and personal preferences. Choosing among the many options...</p>
+        <a href="https://www.verywellhealth.com/birth-control-contraception-questions-906919" target="_blank" rel="noopener noreferrer">Read more</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HerBot Section -->
+  <section class="herbot-section">
+    <h2>Meet HerBot - Your Virtual Health Assistant</h2>
+    <p>Get instant, reliable, and personalized advice on contraception and reproductive health.</p>
+    <div class="herbot-features">
+      <div class="herbot-card">
+        <i class="fas fa-comments feature-icon"></i>
+        <h3>Get Contraceptive Advice</h3>
+        <p>Ask HerBot anything about contraception and get expert-backed responses.</p>
+      </div>
+      <div class="herbot-card">
+        <i class="fas fa-search feature-icon"></i>
+        <h3>Find the Right Contraceptive</h3>
+        <p>Answer a few questions, and HerBot will suggest the best option for you.</p>
+      </div>
+      <div class="herbot-card">
+        <i class="fas fa-lightbulb feature-icon"></i>
+        <h3>Myths vs. Facts</h3>
+        <p>Clear up common misconceptions and learn the truth about birth control.</p>
+      </div>
+    </div>
+    <div class="herbot-button-container">
+      <a href="bot.html" class="herbot-button protected">Chat with HerBot</a>
+    </div>
+  </section>
+
+  <!-- Forum Section -->
+  <section id="forum" class="forum-section">
+    <div class="forum-intro">
+      <h2>Join the SheCare Community</h2>
+      <p>Share your stories, feedback, or ask questions! Connect with others in the SheCare community and learn more from their experiences.</p>
+    </div>
+    <div class="forum-features">
+      <div class="forum-feature">
+        <i class="fas fa-user-circle"></i>
+        <h3>Create an Account</h3>
+        <p>Sign up to join the forum and post your stories, feedback, or questions.</p>
+      </div>
+      <div class="forum-feature">
+        <i class="fas fa-comments"></i>
+        <h3>Post & Share</h3>
+        <p>Share your experiences or ask questions. Your posts can help others in the community.</p>
+      </div>
+      <div class="forum-feature">
+        <i class="fas fa-eye"></i>
+        <h3>View Others' Posts</h3>
+        <p>Learn from other users' experiences and contribute to discussions on various topics.</p>
+      </div>
+    </div>
+    <div class="forum-button">
+      <a href="https://santos21978.softr.app/" class="forum-link protected">Visit Forum</a>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team-section">
+    <div class="team-container">
+      <div class="team-image">
+        <img src="team.jpg" alt="Our Team">
+        <div class="team-names">
+          <p>Anushree Jain, Ananya Bhardwaj, Ananya Bajpai, Gauri Aggarwal</p>
+        </div>
+      </div>
+      <div class="team-info-grid">
+        <div class="info-box">
+          <h3>Motivation</h3>
+          <p>Empowering women with knowledge and access to better health choices.</p>
+        </div>
+        <div class="info-box">
+          <h3>Our Mission</h3>
+          <p>To provide accessible, personalized, and reliable reproductive health solutions.</p>
+        </div>
+        <div class="info-box">
+          <h3>Our Values</h3>
+          <p>Inclusivity, transparency, and innovation in women's healthcare.</p>
+        </div>
+        <div class="info-box">
+          <h3>Future</h3>
+          <p>Expanding our services and impact to reach millions worldwide.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <div class="footer-content">
       <p>&copy; 2025 SheCare. All rights reserved.</p>
@@ -359,55 +779,92 @@
     </div>
   </footer>
 
+  <!-- Landbot Icon (Always Visible) -->
+  <div id="landbotIcon" class="landbot-icon">
+    <i class="fas fa-comments"></i>
+  </div>
+
+  <!-- JavaScript for Login/Protected Links -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const loginBtn = document.querySelector('.login-btn');
-      const userInfo = document.querySelector('.user-info');
-      const userEmailDisplay = document.querySelector('.user-email');
-      const logoutBtn = document.querySelector('.logout-btn');
-      // Combine both protected links and buttons
-      const protectedElements = document.querySelectorAll('.protected-link, .protected');
-    
-      function checkAuthStatus() {
-        const userEmail = sessionStorage.getItem('userEmail');
-        if (userEmail) {
-          // User is logged in: show their email and logout option
+      const loginBtn = document.getElementById('loginButton');
+      const userInfo = document.getElementById('userInfo');
+      const userEmail = document.getElementById('userEmail');
+      const logoutBtn = document.getElementById('logoutButton');
+      const landbotIcon = document.getElementById('landbotIcon');
+      const protectedElements = document.querySelectorAll('.protected, .protected-link');
+
+      // Check authentication status
+      function checkAuth() {
+        const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+        const storedEmail = sessionStorage.getItem('userEmail');
+
+        if (isLoggedIn && storedEmail) {
+          // User is logged in
           loginBtn.style.display = 'none';
           userInfo.style.display = 'flex';
-          userEmailDisplay.textContent = userEmail;
+          userEmail.textContent = storedEmail;
+          landbotIcon.classList.add('active');
         } else {
-          // User is not logged in: show the login button
+          // User is not logged in
           loginBtn.style.display = 'flex';
           userInfo.style.display = 'none';
+          landbotIcon.classList.remove('active');
         }
       }
 
       // Logout functionality
       logoutBtn.addEventListener('click', function () {
-        sessionStorage.removeItem('userEmail');
         sessionStorage.removeItem('isLoggedIn');
-        checkAuthStatus();
+        sessionStorage.removeItem('userEmail');
+        checkAuth();
         window.location.reload();
       });
 
-      // Check authentication status on page load
-      checkAuthStatus();
-
-      // Handle click events on protected elements (links & buttons)
+      // Handle protected elements
       protectedElements.forEach(element => {
-        element.addEventListener('click', (e) => {
-          if (!sessionStorage.getItem('userEmail')) {
+        element.addEventListener('click', function(e) {
+          if (!sessionStorage.getItem('isLoggedIn')) {
             e.preventDefault();
-            alert("Please login to continue");
+            alert('Please login to access this feature');
             window.location.href = 'auth.html';
           }
         });
       });
+
+      // Initial auth check
+      checkAuth();
     });
+
+    // Landbot initialization
+    var myLandbot;
+    function initLandbot() {
+      if (!sessionStorage.getItem('isLoggedIn')) {
+        alert('Please login to continue');
+        window.location.href = 'auth.html';
+        return;
+      }
+
+      if (!myLandbot) {
+        const s = document.createElement('script');
+        s.type = "module";
+        s.async = true;
+        s.onload = () => {
+          myLandbot = new Landbot.Livechat({
+            configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-2766192-2VA6AIM9XA7WBQIS/index.json'
+          });
+        };
+        s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs';
+        document.head.appendChild(s);
+      }
+    }
+
+    // Attach Landbot click handler
+    landbotIcon.addEventListener('click', initLandbot, { once: true });
   </script>
 
+  <!-- Intersection Observer & Navigation Hover Effects -->
   <script>
-    // Intersection Observer for scroll animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -432,34 +889,6 @@
         link.style.transform = 'scale(1)';
       });
     });
-  </script>
-
-  <script>
-    // Initialize Landbot on first user interaction if logged in
-    window.addEventListener('mouseover', initLandbot, { once: true });
-    window.addEventListener('touchstart', initLandbot, { once: true });
-    var myLandbot;
-    function initLandbot() {
-      // Check if the user is logged in before initializing Landbot
-      if (!sessionStorage.getItem('userEmail')) {
-        alert("Please login to continue");
-        window.location.href = 'auth.html';
-        return;
-      }
-      if (!myLandbot) {
-        var s = document.createElement('script');
-        s.type = "module";
-        s.async = true;
-        s.addEventListener('load', function () {
-          var myLandbot = new Landbot.Livechat({
-            configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-2766192-2VA6AIM9XA7WBQIS/index.json',
-          });
-        });
-        s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs';
-        var x = document.getElementsByTagName('script')[0];
-        x.parentNode.insertBefore(s, x);
-      }
-    }
   </script>
 </body>
 </html>
