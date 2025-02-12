@@ -108,6 +108,8 @@ function setupLoginForm() {
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
+            sessionStorage.setItem('userEmail', email);
+            sessionStorage.setItem('isLoggedIn', 'true');
             window.location.href = 'index.html';
         } catch (error) {
             console.error("Login Error:", error);
@@ -115,6 +117,21 @@ function setupLoginForm() {
         }
     });
 }
+function setupLogout() {
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (!logoutBtn) return;
+
+    logoutBtn.addEventListener("click", async () => {
+        try {
+            await signOut(auth);
+            window.location.href = "auth.html"; // Redirect after logout
+        } catch (error) {
+            console.error("Logout Error:", error);
+        }
+    });
+}
+
+setupLogout();
 
 function runSheCareAuth() {
     setupFormToggle();

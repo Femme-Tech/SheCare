@@ -5,10 +5,45 @@
     <title>Landbot | Convert a Landing Page into a Chatbot</title>
   </head>
   <body>
-    <script SameSite="None; Secure"  type="module" src="https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs"></script>
     <script type="module">
-      var myLandbot = new Landbot.Fullpage({
-        configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-2766192-2VA6AIM9XA7WBQIS/index.json',
+      import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+      import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBM14aLNNFjiMPY1Fa-wsP1LydYzpEB2Jc",
+        authDomain: "shecare-f2707.firebaseapp.com",
+        projectId: "shecare-f2707",
+        storageBucket: "shecare-f2707.appspot.com",
+        messagingSenderId: "594871576314",
+        appId: "1:594871576314:web:5a102e6e8d26b9c119cb43"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // Debug: log authentication changes
+      onAuthStateChanged(auth, (user) => {
+        console.log("onAuthStateChanged triggered:", user);
+        if (!user) {
+          // If the user is not logged in, redirect them to the login page.
+          window.location.href = "login.html";  // Ensure this path is correct.
+        } else {
+          // Remove the loading message if any
+          const loadingDiv = document.getElementById("loading");
+          if (loadingDiv) loadingDiv.remove();
+
+          // Dynamically load the Landbot script only for authenticated users.
+          let script = document.createElement("script");
+          script.type = "module";
+          script.src = "https://cdn.landbot.io/landbot-3/landbot-3.0.0.mjs";
+          document.body.appendChild(script);
+
+          script.onload = function () {
+            var myLandbot = new Landbot.Fullpage({
+              configUrl: "https://storage.googleapis.com/landbot.online/v3/H-2766192-2VA6AIM9XA7WBQIS/index.json",
+            });
+          };
+        }
       });
     </script>
   </body>
