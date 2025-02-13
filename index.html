@@ -96,6 +96,22 @@
         .logout-btn:hover {
             color: #7c4dff;
         }
+        a.forum {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #9578d8, #4f45b9);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 30px;
+  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 0 4px 15px rgba(124, 77, 255, 0.3);
+}
+
+a.forum:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #3d74b3, #7C4DFF);
+}
 
         nav {
             padding: 1rem 2rem;
@@ -375,7 +391,7 @@ a.profile:hover {
         <div class="login-container">
             <!-- Added id for login button and the user info container for email and logout -->
              <a href="profile.html" class="profile"> <i class="fas fa-user"></i></a>
-             <a href="forum.html">FORUM</a>
+             <a href="forum.html" class=forum>FORUM</a>
             <a href="auth.html" class="login-btn" id="loginButton">
                 <i class="fas fa-user"></i>
                 Login / Sign Up
