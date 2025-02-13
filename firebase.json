@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "Shecare_p",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

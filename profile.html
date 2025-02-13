@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Profile - SheCare</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background: #f4f4f9;
+      padding: 20px;
+    }
+    .profile-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+    .profile-header img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #7C4DFF;
+    }
+    .profile-header .profile-info h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    .profile-header .profile-info p {
+      font-size: 16px;
+      color: #777;
+    }
+    .questions-section {
+      margin-top: 20px;
+    }
+    .questions-section h3 {
+      font-size: 20px;
+      color: #7C4DFF;
+      margin-bottom: 10px;
+    }
+    .question-item {
+      padding: 15px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .question-item p {
+      font-size: 16px;
+      color: #555;
+    }
+    .question-item small {
+      display: block;
+      margin-top: 5px;
+      color: #999;
+    }
+    .logout-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 16px;
+      background: #FF4081;
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .logout-btn:hover {
+      background: #7C4DFF;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container" id="profileContainer">
+    <div class="profile-header">
+      <img id="profilePhoto" src="default_profile.png" alt="Profile Photo">
+      <div class="profile-info">
+        <h2 id="profileName">Your Name</h2>
+        <p id="profileEmail">your.email@example.com</p>
+      </div>
+    </div>
+    <div class="questions-section">
+      <h3>Your Questions</h3>
+      <div id="questionsList">
+        <!-- Questions will be populated here -->
+      </div>
+    </div>
+    <a class="logout-btn" id="logoutBtn">Logout</a>
+  </div>
+
+  <!-- Firebase and Profile Module Script -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+    import { getFirestore, collection, query, where, getDocs } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyBM14aLNNFjiMPY1Fa-wsP1LydYzpEB2Jc",
+      authDomain: "shecare-f2707.firebaseapp.com",
+      projectId: "shecare-f2707",
+      storageBucket: "shecare-f2707.appspot.com",
+      messagingSenderId: "594871576314",
+      appId: "1:594871576314:web:5a102e6e8d26b9c119cb43"
+    };
+    
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    
+    // Check if user is logged in; if not, redirect to auth page.
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // Populate profile details.
+        document.getElementById('profileEmail').textContent = user.email;
+        // Optionally, you might fetch the user's displayName and photoURL from Firestore
+        // or use user.displayName and user.photoURL if available:
+        document.getElementById('profileName').textContent = user.displayName || "Your Name";
+        document.getElementById('profilePhoto').src = user.photoURL || "default_profile.png";
+        
+        // Fetch questions asked by this user.
+        fetchUserQuestions(user.uid);
+      } else {
+        window.location.href = 'auth.html';
+      }
+    });
+    
+    async function fetchUserQuestions(userId) {
+      try {
+        const questionsListEl = document.getElementById('questionsList');
+        const q = query(collection(db, 'questions'), where('userId', '==', userId));
+        const querySnapshot = await getDocs(q);
+        if (querySnapshot.empty) {
+          questionsListEl.innerHTML = "<p>You haven't asked any questions yet.</p>";
+          return;
+        }
+        querySnapshot.forEach((docSnap) => {
+          const data = docSnap.data();
+          const questionDiv = document.createElement('div');
+          questionDiv.classList.add('question-item');
+          // Format the timestamp (if exists) 
+          let timeStr = "";
+          if (data.createdAt && data.createdAt.seconds) {
+            timeStr = new Date(data.createdAt.seconds * 1000).toLocaleString();
+          }
+          questionDiv.innerHTML = `<p>${data.question}</p><small>Asked on ${timeStr}</small>`;
+          questionsListEl.appendChild(questionDiv);
+        });
+      } catch (error) {
+        console.error("Error fetching questions:", error);
+      }
+    }
+    
+    // Logout functionality
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      try {
+        await signOut(auth);
+        window.location.href = 'auth.html';
+      } catch (error) {
+        console.error("Logout error:", error);
+      }
+    });
+  </script>
+</body>
+</html>

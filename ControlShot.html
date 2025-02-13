@@ -6,26 +6,83 @@
 <title>SheCare</title>
 <link rel="stylesheet" type="text/css" href="implant.css">
 <script src="implant.js"></script>
+<style>
+  /* Login Container Styles (Protected Feature) */
+  .login-container {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+      }
+      .login-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 10px 20px;
+          background: linear-gradient(135deg, #7C4DFF, #FF4081);
+          color: white;
+          text-decoration: none;
+          border-radius: 30px;
+          font-weight: 600;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(124, 77, 255, 0.3);
+          gap: 10px;
+      }
+      .login-btn:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 6px 20px rgba(124, 77, 255, 0.4);
+          background: linear-gradient(135deg, #FF4081, #7C4DFF);
+      }
+      .user-info {
+          display: none;
+          align-items: center;
+          gap: 10px;
+          background: rgba(124,77,255,0.2);
+          padding: 10px 20px;
+          border-radius: 30px;
+          color: white;
+      }
+      .logout-btn {
+          color: #FF4081;
+          cursor: pointer;
+          font-weight: 600;
+          transition: color 0.3s ease;
+      }
+      .logout-btn:hover {
+          color: #7C4DFF;
+      }
+</style>
 </head>
 <body>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <header>
+  <div class="login-container">
+    <a href="auth.html" class="login-btn" id="loginButton">
+        <i class="fas fa-user"></i> Login / Sign Up
+    </a>
+    <div class="user-info" id="userInfo">
+        <span id="userEmail"></span>
+        <span class="logout-btn" id="logoutButton">Logout</span>
+    </div>
+</div>
         <div class="logo-container">
             <img src="SheCareLogo1.jpg" alt="SheCare" class="logo">
         </div>
         <nav>
-    <ul>
-        <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
-        <li><a href="https://shecare.onrender.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-capsules"></i>PillPickr</a></li>
-        <li><a href="faq.html"><i class="fas fa-question-circle"></i>FAQ</a></li>
-        <li><a href="methods.html"><i class="fas fa-heartbeat"></i>Contraceptives</a></li>
-        <li><a href="oc.html"><i class="fas fa-calendar-alt"></i>Track Cycle</a></li>
-        <li><a href="find_my_doctor.html"><i class="fas fa-calendar-alt"></i>DocFinder</a></li>
-        <li><a href="find_my_pharmacy.html"><i class="fas fa-calendar-alt"></i>FindPharm</a></li>
-        <li><a href="bot.html"><i class="fas fa-comments"></i>HerBot</a></li>
-        <li><a href="https://santos21978.softr.app/" target="_blank"><i class="fas fa-users"></i>Forum</a></li>
-    </ul>
+          <ul>
+            <li><a href="index.html" class="protected-link"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="https://shecare.onrender.com/" class="protected-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-capsules"></i>PillPickr</a></li>
+            <li><a href="faq.html"><i class="fas fa-question-circle"></i>FAQ</a></li>
+            <li><a href="methods.html"><i class="fas fa-heartbeat"></i>Contraceptives</a></li>
+            <li><a href="oc.html" class="protected-link"><i class="fas fa-calendar-alt"></i>Track Cycle</a></li>
+            <li><a href="find_my_doctor.html" class="protected-link"><i class="fas fa-calendar-alt"></i>DocFinder</a></li>
+            <li><a href="find_my_pharmacy.html" class="protected-link"><i class="fas fa-calendar-alt"></i>FindPharm</a></li>
+            <li><a href="bot.html" class="protected-link"><i class="fas fa-comments"></i>HerBot</a></li>
+            <li><a href="https://santos21978.softr.app/" class="protected-link" target="_blank"><i class="fas fa-users"></i>Forum</a></li>
+        </ul>
 </nav>
     </header>
 <div class="image-container">
@@ -130,3 +187,47 @@
     </div>
     </div>
   </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const loginBtn = document.getElementById('loginButton');
+      const userInfo = document.getElementById('userInfo');
+      const userEmail = document.getElementById('userEmail');
+      const logoutBtn = document.getElementById('logoutButton');
+      const protectedElements = document.querySelectorAll('.protected-link');
+
+      function checkAuth() {
+        const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+        const storedEmail = sessionStorage.getItem('userEmail');
+
+        if (isLoggedIn && storedEmail) {
+          loginBtn.style.display = 'none';
+          userInfo.style.display = 'flex';
+          userEmail.textContent = storedEmail;
+        } else {
+          loginBtn.style.display = 'inline-flex';
+          userInfo.style.display = 'none';
+        }
+      }
+
+      logoutBtn.addEventListener('click', function () {
+        sessionStorage.removeItem('isLoggedIn');
+        sessionStorage.removeItem('userEmail');
+        checkAuth();
+        window.location.reload();
+      });
+
+      protectedElements.forEach(element => {
+        element.addEventListener('click', function(e) {
+          if (!sessionStorage.getItem('isLoggedIn')) {
+            e.preventDefault();
+            alert('Please login to access this feature');
+            window.location.href = 'auth.html';
+          }
+        });
+      });
+
+      checkAuth();
+    });
+  </script>
+  </body>
+  </html>
