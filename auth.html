@@ -5,16 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SheCare - Signup/Login</title>
     <style>
+        
         * {
             margin: 0;
             padding: 0;
+            overflow-y: hidden;
             box-sizing: border-box;
             font-family: "Gilroy", sans-serif;
         }
+        
+body {
+    height: 100vh;
+    background: 
+        linear-gradient(135deg, rgba(252,232,243,0.5) 0%, rgba(247,209,255,0.5) 100%),
+        url('./auth_bg.jpg');
+ 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; /* Changed from auto 100% to prevent repetition */
+    overflow: auto; /* Changed from hidden to allow scrolling */
+    position: relative;
+   
+}
 
     .auth-container {
     width: 700px;  /* Increased width */
-    overflow-y:hidden;
     display: block;
     margin: 0 auto;
     position: relative; /* Changed from static to relative for proper positioning */
@@ -33,18 +48,6 @@
     animation: formAppear 0.8s ease;
 }
 
-body {
-    height: 100vh;
-    background: 
-        linear-gradient(135deg, rgba(252,232,243,0.5) 0%, rgba(247,209,255,0.5) 100%),
-        url('./auth_bg.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover; /* Changed from auto 100% to prevent repetition */
-    overflow: auto; /* Changed from hidden to allow scrolling */
-    position: relative;
-   
-}
 
 /* Custom cursor style using a PNG image with hotspot coordinates (12 12) */
 .cursor {
