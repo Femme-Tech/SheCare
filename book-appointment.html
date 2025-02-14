@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 400px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px gray;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #555;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    #statusMessage {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Book an Appointment</h2>
+    <form id="appointmentForm">
+      <!-- Appointment Date -->
+      <label for="date">Appointment Date:</label>
+      <input type="date" id="date" required>
+      
+      <!-- Preferred Time -->
+      <label for="time">Preferred Time:</label>
+      <input type="time" id="time" required>
+      
+      <!-- Service Selection -->
+      <label for="service">Select Service:</label>
+      <select id="service">
+        <option value="General Consultation">General Consultation</option>
+        <option value="Gynecology">Gynecology</option>
+        <option value="Maternity Checkup">Maternity Checkup</option>
+        <option value="Ultrasound">Ultrasound</option>
+      </select>
+      
+      <button type="submit">Book Appointment</button>
+    </form>
+    <p id="statusMessage"></p>
+  </div>
+
+  <!-- Firebase and Appointment Submission Script -->
+  <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+
+    // Your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBM14aLNNFjiMPY1Fa-wsP1LydYzpEB2Jc",
+      authDomain: "shecare-f2707.firebaseapp.com",
+      projectId: "shecare-f2707",
+      storageBucket: "shecare-f2707.firebasestorage.app",
+      messagingSenderId: "594871576314",
+      appId: "1:594871576314:web:5a102e6e8d26b9c119cb43",
+      measurementId: "G-7PJV0642PB"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Check authentication state
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        // If no user is logged in, redirect to your login page
+        window.location.href = "auth.html";
+      }
+      // Optionally, update UI with user info if needed
+      console.log("Logged in as:", user.email);
+    });
+
+    // Handle form submission
+    document.getElementById("appointmentForm").addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      // Capture form values
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+      const service = document.getElementById("service").value;
+
+      // Get the current user
+      const user = auth.currentUser;
+      if (!user) {
+        alert("User not logged in. Please log in.");
+        return;
+      }
+
+      // Prepare appointment data
+      const appointmentData = {
+        userId: user.uid,
+        userEmail: user.email,
+        date: date,
+        time: time,
+        service: service,
+        createdAt: serverTimestamp()
+      };
+
+      try {
+        // Save appointment to Firestore
+        await addDoc(collection(db, "appointments"), appointmentData);
+        document.getElementById("statusMessage").innerText = "Appointment booked successfully!";
+        document.getElementById("statusMessage").style.color = "green";
+        document.getElementById("appointmentForm").reset();
+      } catch (error) {
+        console.error("Error booking appointment:", error);
+        document.getElementById("statusMessage").innerText = "Failed to book appointment.";
+        document.getElementById("statusMessage").style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>
