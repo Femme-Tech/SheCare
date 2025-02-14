@@ -30,6 +30,28 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
+/**
+ * Send a welcome email via EmailJS.
+ * Ensure you have included the EmailJS script in your HTML (see instructions below).
+ */
+function sendWelcomeEmail(user) {
+    // Debug log: Confirm that user.email is available.
+    console.log("Sending welcome email to:", user.email);
+
+    const templateParams = {
+        to_email: user.email,               // This will be the recipient email in your EmailJS template.
+        to_name: user.displayName || "User", // This will be used for personalization in your template.
+        message: "Thank you for signing up with SheCare! We're excited to have you join our community."
+    };
+
+    emailjs.send("service_6g2fwtq", "template_dj4q0y9", templateParams)
+      .then(function(response) {
+         console.log("Welcome email sent!", response.status, response.text);
+      }, function(error) {
+         console.error("Failed to send welcome email:", error);
+      });
+}
+
 function setupFormToggle() {
     const loginToggle = document.getElementById('loginToggle');
     const signupToggle = document.getElementById('signupToggle');
@@ -78,6 +100,10 @@ async function handleGoogleSignIn(mode) {
     try {
         const result = await signInWithPopup(auth, googleProvider);
         const user = result.user;
+        
+        // Debug: Log user details to ensure email exists.
+        console.log("Google user object:", user);
+        
         const userDocRef = doc(db, 'users', user.uid);
         const userDocSnap = await getDoc(userDocRef);
         
@@ -101,17 +127,8 @@ async function handleGoogleSignIn(mode) {
                     photoURL: user.photoURL || "",
                     createdAt: serverTimestamp()
                 });
-                // Call your cloud function endpoint to send a welcome email.
-                try {
-                    await fetch('https://shecare-f2707.firebaseapp.com/__/auth/action?mode=action&oobCode=code', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email: user.email, name: user.displayName })
-                    });
-                    console.log(`Welcome email sent to ${user.email}`);
-                } catch (e) {
-                    console.error("Failed to send welcome email:", e);
-                }
+                // Send welcome email using EmailJS.
+                sendWelcomeEmail(user);
             } else {
                 // For signup: if already registered, abort and show error.
                 await signOut(auth);
@@ -172,8 +189,8 @@ function setupSignupForm() {
                 createdAt: serverTimestamp()
             });
 
-            // Optionally, send a welcome email here.
-            console.log(`Welcome email sent to ${email}`);
+            // Optionally, send a welcome email for email signups here if desired.
+            // sendWelcomeEmail(user);
 
             // Switch to login view after successful signup.
             loginForm.style.display = 'flex';
