@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Your Profile - SheCare</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- FullCalendar CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet" />
   <style>
     /* Basic Reset */
     * {
@@ -49,10 +51,12 @@
       font-size: 16px;
       color: #777;
     }
-    .questions-section {
+    .questions-section,
+    .appointments-section {
       margin-top: 20px;
     }
-    .questions-section h3 {
+    .questions-section h3,
+    .appointments-section h3 {
       font-size: 20px;
       color: #7C4DFF;
       margin-bottom: 10px;
@@ -72,9 +76,17 @@
       margin-top: 5px;
       color: #999;
     }
+    #calendar {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 10px;
+    }
     .logout-btn {
       display: inline-block;
-      margin-top: 10px;
+      margin-top: 20px;
       padding: 8px 16px;
       background: #FF4081;
       color: #fff;
@@ -91,7 +103,7 @@
 <body>
   <div class="profile-container" id="profileContainer">
     <div class="profile-header">
-      <img id="profilePhoto" src="default_profile.png" alt="Profile Photo">
+      <img id="profilePhoto" src="default_profile.png" alt="Profile Photo" />
       <div class="profile-info">
         <h2 id="profileName">Your Name</h2>
         <p id="profileEmail">your.email@example.com</p>
@@ -102,6 +114,11 @@
       <div id="questionsList">
         <!-- Questions will be populated here -->
       </div>
+    </div>
+    <div class="appointments-section">
+      <h3>Your Appointments</h3>
+      <!-- Calendar will render here -->
+      <div id="calendar"></div>
     </div>
     <a class="logout-btn" id="logoutBtn">Logout</a>
   </div>
@@ -130,13 +147,16 @@
       if (user) {
         // Populate profile details.
         document.getElementById('profileEmail').textContent = user.email;
-        // Optionally, you might fetch the user's displayName and photoURL from Firestore
-        // or use user.displayName and user.photoURL if available:
         document.getElementById('profileName').textContent = user.displayName || "Your Name";
         document.getElementById('profilePhoto').src = user.photoURL || "default_profile.png";
         
+        // Debug log the user ID
+        console.log("Logged in user UID:", user.uid);
+        
         // Fetch questions asked by this user.
         fetchUserQuestions(user.uid);
+        // Fetch appointments for the user.
+        fetchUserAppointments(user.uid);
       } else {
         window.location.href = 'auth.html';
       }
@@ -155,7 +175,7 @@
           const data = docSnap.data();
           const questionDiv = document.createElement('div');
           questionDiv.classList.add('question-item');
-          // Format the timestamp (if exists) 
+          // Format the timestamp (if exists)
           let timeStr = "";
           if (data.createdAt && data.createdAt.seconds) {
             timeStr = new Date(data.createdAt.seconds * 1000).toLocaleString();
@@ -168,6 +188,61 @@
       }
     }
     
+    async function fetchUserAppointments(userId) {
+      try {
+        const appointmentsQuery = query(
+          collection(db, 'appointments'),
+          where('userId', '==', userId)
+        );
+        const appointmentsSnapshot = await getDocs(appointmentsQuery);
+        const appointments = [];
+        appointmentsSnapshot.forEach(doc => {
+          const data = doc.data();
+          console.log("Appointment document:", data); // Debug log each appointment
+          // Validate date and time fields
+          if (data.date && data.time) {
+            // Combine date and time into a single Date object.
+            const appointmentDateTime = new Date(`${data.date}T${data.time}`);
+            if (!isNaN(appointmentDateTime)) {
+              appointments.push({
+                title: data.service || "Appointment",
+                start: appointmentDateTime
+              });
+            } else {
+              console.warn("Invalid date/time for appointment:", data);
+            }
+          } else {
+            console.warn("Missing date or time in appointment:", data);
+          }
+        });
+        console.log("Appointments fetched:", appointments);
+        // Initialize the calendar with the fetched appointments.
+        initializeCalendar(appointments);
+      } catch (error) {
+        console.error("Error fetching appointments:", error);
+      }
+    }
+    
+    function initializeCalendar(appointments) {
+      // Check if FullCalendar is available
+      if (typeof FullCalendar === "undefined") {
+        console.error("FullCalendar is not loaded.");
+        return;
+      }
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
+        events: appointments,
+        height: 500
+      });
+      calendar.render();
+    }
+    
     // Logout functionality
     document.getElementById('logoutBtn').addEventListener('click', async () => {
       try {
@@ -178,5 +253,9 @@
       }
     });
   </script>
+  
+  <!-- FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
 </body>
 </html>
