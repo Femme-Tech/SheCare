@@ -418,7 +418,7 @@ a.profile:hover {
         <li><a href="oc.html" class="protected"><i class="fas fa-calendar-alt"></i>Track Cycle</a></li>
         <li><a href="find_my_doctor.html" class="protected"><i class="fas fa-calendar-alt"></i>DocFinder</a></li>
         <li><a href="find_my_pharmacy.html" class="protected"><i class="fas fa-calendar-alt"></i>FindPharm</a></li>
-        <li><a href="bot.html" class="protected herbot-button"><i class="fas fa-comments"></i>HerBot</a></li>
+        <li><a href="bot.html" class="protected"><i class="fas fa-comments"></i>HerBot</a></li>
         <li><a href="https://santos21978.softr.app/" class="protected" target="_blank"><i class="fas fa-users"></i>Forum</a></li>
     </ul>
 </nav>
@@ -684,7 +684,7 @@ a.profile:hover {
 
       <div class="herbot-button-container">
           <!-- Added the 'protected' class so that HerBot is accessible only after login -->
-          <a href="bot.html" class="herbot-button protected">Chat with HerBot</a>
+          <a href="bot.html" class="chat-button protected">Chat with HerBot</a>
       </div>
   </section>
 
@@ -746,9 +746,23 @@ a.profile:hover {
       transition: background 0.3s ease;
       }
 
-      .herbot-button:hover {
+      .chat-button:hover {
         background: var(--secondary);
       }
+
+      .chat-button {
+        display: inline-block;
+      padding: 1rem 2rem;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      border-radius: 2rem;
+      transition: background 0.3s ease;
+      }
+
+
+        
       /* LANDBOT ICON */
     #landbotIcon {
       position: fixed;
@@ -1056,7 +1070,7 @@ a.profile:hover {
     const userEmail = document.getElementById('userEmail');
     const logoutBtn = document.getElementById('logoutButton');
     const landbotIcon = document.getElementById('landbotIcon');
-    const protectedElements = document.querySelectorAll('.protected, .protected-link, .button.protected, .herbot-button.protected,.forum-link.protected');
+    const protectedElements = document.querySelectorAll('.protected, .protected-link, .button.protected, .herbot-button.protected,.chat-button.protected,.forum-link.protected');
 
     function checkAuth() {
       const isLoggedIn = sessionStorage.getItem('isLoggedIn');
