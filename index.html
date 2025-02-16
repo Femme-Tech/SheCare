@@ -265,6 +265,29 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
+            .typewriter-container {
+      display: inline-block;
+    }
+    /* The text that is typed out */
+    .typewriter {
+      font-size: 2em;
+      display: inline;
+    }
+    /* The blinking cursor */
+    .cursor {
+    
+      display: inline-block;
+      font-weight: bold;
+      animation: blink 0.90s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 50% {
+        opacity: 1;
+      }
+      51%, 100% {
+        opacity: 0;
+      }
+    }
 
             .features {
                 grid-template-columns: 1fr;
@@ -402,7 +425,59 @@ a.profile:hover {
     </header>
 
     <section class="hero">
-        <h1>Welcome to SheCare: Aware, Prepare, Care!</h1>
+        <h1>
+            Welcome to SheCare:
+            <span class="typewriter-container">
+              <span id="typewriter" class="typewriter"></span>
+              <span class="cursor">|</span>
+            </span>
+          </h1>
+          <script>
+            // Array of words to animate in order
+            const words = ["Aware!", "Prepare!", "Care!"];
+            
+            // References to the typewriter element
+            const typewriter = document.getElementById("typewriter");
+            
+            // Animation settings
+            const typeSpeed = 200;       // milliseconds per letter
+            const eraseSpeed = typeSpeed / 2;
+            const pauseBetweenWords = 1500; // pause (ms) after a word is complete
+            
+            let currentWordIndex = 0;
+            let currentLetterIndex = 0;
+            
+            // Function to type each letter of the current word
+            function typeWord() {
+              const currentWord = words[currentWordIndex];
+              
+              if (currentLetterIndex < currentWord.length) {
+                typewriter.textContent += currentWord.charAt(currentLetterIndex);
+                currentLetterIndex++;
+                setTimeout(typeWord, typeSpeed);
+              } else {
+                // After typing the word, pause before erasing it
+                setTimeout(eraseWord, pauseBetweenWords);
+              }
+            }
+            
+            // Function to erase the current word letter by letter
+            function eraseWord() {
+              if (currentLetterIndex > 0) {
+                typewriter.textContent = typewriter.textContent.slice(0, -1);
+                currentLetterIndex--;
+                setTimeout(eraseWord, eraseSpeed);
+              } else {
+                // Move to the next word in the array (looping back if at the end)
+                currentWordIndex = (currentWordIndex + 1) % words.length;
+                setTimeout(typeWord, typeSpeed);
+              }
+            }
+            
+            // Start the typewriter animation
+            typeWord();
+          </script>
+        
         <p>Empowering women with the knowledge and tools for informed contraceptive choices.<br> By offering reliable information and personalized guidance, 
           we aim to support women in making confident decisions about their reproductive health.</p>
     </section>
