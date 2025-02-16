@@ -736,22 +736,18 @@ a.profile:hover {
       }
 
       .herbot-button {
-        color: white;
+        display: inline-block;
+      padding: 1rem 2rem;
+      background: var(--primary);
+      color: white;
       text-decoration: none;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
       border-radius: 2rem;
-      transition: all 0.3s ease;
-      display: flex
-  ;
-      align-items: center;
-      gap: 0.5rem;
+      transition: background 0.3s ease;
       }
 
       .herbot-button:hover {
-        background: rgba(124, 77, 255, 0.1);
-            color: var(--primary);
-            transform: translateY(-2px);
+        background: var(--secondary);
       }
       /* LANDBOT ICON */
     #landbotIcon {
@@ -809,7 +805,7 @@ a.profile:hover {
   </div>
 
   <div class="forum-button">
-      <a href="https://santos21978.softr.app/" class="forum-link">Visit Forum</a>
+      <a href="https://santos21978.softr.app/" class="forum-link protected">Visit Forum</a>
   </div>
 </section>
 <style>/* Forum Section */
@@ -1060,7 +1056,7 @@ a.profile:hover {
     const userEmail = document.getElementById('userEmail');
     const logoutBtn = document.getElementById('logoutButton');
     const landbotIcon = document.getElementById('landbotIcon');
-    const protectedElements = document.querySelectorAll('.protected, .protected-link, .button.protected, .herbot-button.protected');
+    const protectedElements = document.querySelectorAll('.protected, .protected-link, .button.protected, .herbot-button.protected,.forum-link.protected');
 
     function checkAuth() {
       const isLoggedIn = sessionStorage.getItem('isLoggedIn');
