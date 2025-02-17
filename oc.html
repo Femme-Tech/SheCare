@@ -9,6 +9,81 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
   <style>
+  .background-animations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.floating-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(30, 8, 82,0.9);
+  animation: float 12s infinite linear;
+  filter: blur(2px);
+}
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20vh) translateX(10vw);
+  }
+  50% {
+    transform: translateY(10vh) translateX(-10vw);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translateY(-10vh) translateX(15vw);
+  }
+}
+
+/* Light effect */
+.background-animations::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, 
+    rgba(236, 72, 153, 0.05) 0%, 
+    rgba(255, 255, 255, 0) 70%);
+  animation: rotate 60s linear infinite;
+  top: -50%;
+  left: -50%;
+}
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.background-animations::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 75%
+  );
+  animation: shimmer 8s infinite;
+  background-size: 1000px 100%;
+}
     /* ----------------- Base & Navigation Styles ----------------- */
     :root {
       --primary: #8B5CF6;
@@ -332,6 +407,13 @@
   </style>
 </head>
 <body>
+<div class="background-animations">
+    <!-- Floating circles -->
+    <div class="floating-circle" style="width: 120px; height: 120px; top: 20%; left: 10%;"></div>
+    <div class="floating-circle" style="width: 80px; height: 80px; top: 60%; left: 80%;"></div>
+    <div class="floating-circle" style="width: 160px; height: 160px; top: 40%; left: 50%;"></div>
+    <div class="floating-circle" style="width: 100px; height: 100px; top: 80%; left: 30%;"></div>
+  </div>
   <header>
     <!-- Login/Profile Container -->
     <div class="login-container">
