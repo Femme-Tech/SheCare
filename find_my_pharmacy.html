@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Find My Pharmacy</title>
+  <!-- Importing the Poppins font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
   <style>
-    /* Enhanced CSS */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background-color: #f4f4f9;
-      color: #333;
-    }
-header {
+    /* Base Styles */
+     :root {
+            --primary: #7C4DFF;
+            --secondary: #FF4081;
+            --background: #f8f5fe;
+            --text: #2A2A2A;
+        }
+ body {
+            
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--background);
+        }
+
+    header {
     position: relative;
     text-align: center;
     padding: 5px 0;
@@ -28,107 +40,22 @@ header {
       font-weight: 600;
     }
 
-    #map {
-      height: 400px;
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
 
-    #list {
+    .logo-container {
       display: flex;
-      flex-direction: column;
-      gap: 15px;
+      justify-content: center;
     }
 
-    .place-item {
-      background-color: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
+    .logo {
+      width: 150px;
+      transition: transform 0.3s ease;
     }
 
-    .place-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    .logo:hover {
+      transform: rotate(-5deg) scale(1.05);
     }
 
-    .place-item h3 {
-      margin: 0;
-      font-size: 20px;
-      color: #2c3e50;
-      font-weight: 600;
-    }
-    body,
-ul {
-    margin: 0;
-    padding: 0;
-}
-    .place-item p {
-      margin: 5px 0;
-      font-size: 14px;
-      color: #555;
-    }
-
-    .place-item .rating {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 10px;
-    }
-
-    .place-item .rating span {
-      font-size: 16px;
-      font-weight: 500;
-      color: #f39c12;
-    }
-
-    .place-item .rating .stars {
-      color: #f1c40f;
-      font-size: 18px;
-    }
-
-    .place-item a {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 16px;
-      background-color: #3498db;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 500;
-      transition: background-color 0.3s;
-    }
-
-    .place-item a:hover {
-      background-color: #2980b9;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 24px;
-      }
-
-      .place-item h3 {
-        font-size: 18px;
-      }
-
-      .place-item p {
-        font-size: 13px;
-      }
-
-      .place-item a {
-        font-size: 13px;
-        padding: 8px 12px;
-      }
-      
-    }
-    nav {
+     nav {
     font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
@@ -161,13 +88,18 @@ nav a:hover {
 nav a i {
     margin-right: 0.5rem;
 }
-
 @media (max-width: 768px) {
     nav ul {
         flex-wrap: wrap;
         gap: 1rem;
     }
 }
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
 
 
 .logo-container {
@@ -184,15 +116,152 @@ nav a i {
 .logo:hover {
     transform: rotate(-5deg) scale(1.05);
 }
+
+    /* Main Content Layout */
+    .main-content {
+      display: flex;
+      height: calc(100vh - 180px);
+      padding: 20px;
+      gap: 20px;
+    }
+
+    #list-container {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 20px;
+    }
+
+    #map-container {
+      flex: 1;
+      position: sticky;
+      top: 20px;
+    }
+
+    #map {
+      height: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Attractive Pharmacy Box Styling */
+    .place-item {
+      background: linear-gradient(135deg, #ffffff, #eaf2ff);
+      border-left: 5px solid #4a90e2;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .place-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .place-item::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(74, 144, 226, 0.1);
+      transform: skewX(-20deg);
+      transition: all 0.5s ease;
+    }
+
+    .place-item:hover::after {
+      left: 100%;
+    }
+
+    .place-item h3 {
+      margin: 0;
+      font-size: 22px;
+      color: #2a2a2a;
+      font-weight: 600;
+    }
+
+    .place-item p {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    .place-item .rating {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      color: #e67e22;
+      margin: 10px 0;
+    }
+
+    /* Attractive Button */
+    .place-item a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #4a90e2;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .place-item a:hover {
+      background: #357ab7;
+      transform: translateY(-2px);
+    }
+
+    /* Loading Skeleton */
+    .loading-skeleton {
+      animation: pulse 1.5s infinite;
+      background: linear-gradient(90deg, #e0e0e0 25%, #f2f2f2 50%, #e0e0e0 75%);
+      background-size: 200% 100%;
+      border-radius: 12px;
+      height: 120px;
+      margin-bottom: 20px;
+    }
+
+    @keyframes pulse {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+        height: auto;
+      }
+
+      #map-container {
+        height: 400px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+    }
   </style>
 </head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<header>
-        <div class="logo-container">
-            <img src="SheCareLogo1.jpg" alt="SheCare" class="logo">
-        </div>
-        <nav>
-    <ul>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="SheCareLogo1.jpg" alt="SheCare" class="logo" />
+    </div>
+    <nav>
+      <ul>
         <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
         <li><a href="https://shecare.onrender.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-capsules"></i>PillPickr</a></li>
         <li><a href="faq.html"><i class="fas fa-question-circle"></i>FAQ</a></li>
@@ -202,13 +271,24 @@ nav a i {
         <li><a href="find_my_pharmacy.html"><i class="fas fa-calendar-alt"></i>FindPharm</a></li>
         <li><a href="bot.html"><i class="fas fa-comments"></i>HerBot</a></li>
         <li><a href="https://santos21978.softr.app/" target="_blank"><i class="fas fa-users"></i>Forum</a></li>
-    </ul>
-</nav>
-    </header>
-<body>
-  <h1>Find My Pharmacy</h1>
-  <div id="map"></div>
-  <div id="list"></div>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <div id="list-container">
+      <h1>Nearby Pharmacies</h1>
+      <div id="list">
+        <!-- Initial loading skeletons -->
+        <div class="loading-skeleton"></div>
+        <div class="loading-skeleton"></div>
+        <div class="loading-skeleton"></div>
+      </div>
+    </div>
+    <div id="map-container">
+      <div id="map"></div>
+    </div>
+  </div>
 
   <script>
     let map;
@@ -217,17 +297,14 @@ nav a i {
     let userLocation;
 
     function initMap() {
-      // Initialize the map
       map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 0, lng: 0 }, // Default center
+        center: { lat: 0, lng: 0 },
         zoom: 13,
       });
 
-      // Initialize the Places service
       service = new google.maps.places.PlacesService(map);
       infowindow = new google.maps.InfoWindow();
 
-      // Get the user's current location
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
@@ -235,11 +312,8 @@ nav a i {
               position.coords.latitude,
               position.coords.longitude
             );
-
-            // Center the map on the user's location
             map.setCenter(userLocation);
-
-            // Search for nearby pharmacies
+            document.getElementById("list").innerHTML = getLoadingSkeletons();
             searchNearbyPlaces(userLocation);
           },
           (error) => {
@@ -252,65 +326,83 @@ nav a i {
       }
     }
 
+    function getLoadingSkeletons() {
+      let skeletons = "";
+      for (let i = 0; i < 3; i++) {
+        skeletons += '<div class="loading-skeleton"></div>';
+      }
+      return skeletons;
+    }
+
     function searchNearbyPlaces(location) {
       const request = {
         location: location,
-        radius: 5000, // 5km radius
-        type: "pharmacy", // Search for pharmacies
+        radius: 5000,
+        type: "pharmacy",
       };
 
       service.nearbySearch(request, (results, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          // Sort results by rating (highest to lowest)
           results.sort((a, b) => (b.rating || 0) - (a.rating || 0));
-
-          // Display results on the map and in the list
           displayResults(results);
+        } else {
+          document.getElementById("list").innerHTML = "<p>No pharmacies found nearby.</p>";
         }
       });
     }
 
     function displayResults(results) {
       const listElement = document.getElementById("list");
+      listElement.innerHTML = "";
 
       results.forEach((place) => {
-        // Create a marker for each place
         const marker = new google.maps.Marker({
           position: place.geometry.location,
           map: map,
           title: place.name,
         });
 
-        // Add click event to show details in an info window
         google.maps.event.addListener(marker, "click", () => {
           infowindow.setContent(`
             <div>
               <h3>${place.name}</h3>
               <p>Rating: ${place.rating || "N/A"}</p>
-              <p>Address: ${place.vicinity}</p>
+              <p>${place.vicinity}</p>
               <a href="https://www.google.com/maps/dir/?api=1&destination=${place.geometry.location.lat()},${place.geometry.location.lng()}" target="_blank">Get Directions</a>
             </div>
           `);
           infowindow.open(map, marker);
         });
 
-        // Add place details to the list
         const placeItem = document.createElement("div");
         placeItem.className = "place-item";
         placeItem.innerHTML = `
           <h3>${place.name}</h3>
-          <p>Address: ${place.vicinity}</p>
+          <p>${place.vicinity}</p>
           <div class="rating">
-            <span>Rating: ${place.rating || "N/A"}</span>
-            <div class="stars">${generateStarRating(place.rating)}</div>
+            Rating: ${place.rating || "N/A"} ${generateStarRating(place.rating)}
           </div>
           <a href="https://www.google.com/maps/dir/?api=1&destination=${place.geometry.location.lat()},${place.geometry.location.lng()}" target="_blank">Get Directions</a>
         `;
+
+        placeItem.addEventListener("click", () => {
+          map.setCenter(place.geometry.location);
+          map.setZoom(15);
+          infowindow.setContent(`
+            <div>
+              <h3>${place.name}</h3>
+              <p>Rating: ${place.rating || "N/A"}</p>
+              <p>${place.vicinity}</p>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=${place.geometry.location.lat()},${place.geometry.location.lng()}" target="_blank">Get Directions</a>
+            </div>
+          `);
+          infowindow.open(map, marker);
+        });
+
         listElement.appendChild(placeItem);
       });
     }
 
-    // Helper function to generate star ratings
     function generateStarRating(rating) {
       if (!rating) return "⭐";
       const fullStars = Math.floor(rating);
