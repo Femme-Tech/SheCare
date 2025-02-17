@@ -3,15 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>Find My Doctor</title>
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background-color: #f4f4f9;
-      color: #333;
-    }
+         :root {
+            --primary: #7C4DFF;
+            --secondary: #FF4081;
+            --background: #f8f5fe;
+            --text: #2A2A2A;
+        }
+ body {
+            
+            color: var(--text);
+            line-height: 1.6;
+            background: var(--background);
+        }
+
+    header {
+    position: relative;
+    text-align: center;
+    padding: 5px 0;
+    background-color: #00286e;
+    /* Dark blue background color */
+}
     h1 {
       text-align: center;
       color: #2c3e50;
@@ -19,62 +33,258 @@
       font-size: 28px;
       font-weight: 600;
     }
+
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .logo {
+      width: 150px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: rotate(-5deg) scale(1.05);
+    }
+
+     nav {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom:1rem ;
+}
+
+nav a:hover {
+    background: rgba(124, 77, 255, 0.1);
+    color: #7C4DFF;
+    transform: translateY(-2px);
+}
+
+nav a i {
+    margin-right: 0.5rem;
+}
+@media (max-width: 768px) {
+    nav ul {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    padding: 0rem;
+}
+
+.logo {
+    width: 180px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: rotate(-5deg) scale(1.05);
+}
+
+    /* Main Content Layout */
+    .main-content {
+      display: flex;
+      height: calc(100vh - 180px);
+      padding: 20px;
+      gap: 20px;
+    }
+
+    #list-container {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 20px;
+    }
+
+    #map-container {
+      flex: 1;
+      position: sticky;
+      top: 20px;
+    }
+
     #map {
-      height: 400px;
-      width: 100%;
+      height: 100%;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
     }
-    #list {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+
+    /* Attractive Pharmacy Box Styling */
     .place-item {
-      background-color: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 10px;
+      background: linear-gradient(135deg, #ffffff, #eaf2ff);
+      border-left: 5px solid #4a90e2;
+      border-radius: 12px;
       padding: 20px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
+
     .place-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
     }
+
+    .place-item::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(74, 144, 226, 0.1);
+      transform: skewX(-20deg);
+      transition: all 0.5s ease;
+    }
+
+    .place-item:hover::after {
+      left: 100%;
+    }
+
     .place-item h3 {
       margin: 0;
-      font-size: 20px;
-      color: #2c3e50;
+      font-size: 22px;
+      color: #2a2a2a;
       font-weight: 600;
     }
+
     .place-item p {
-      margin: 5px 0;
-      font-size: 14px;
+      margin: 10px 0;
+      font-size: 16px;
       color: #555;
+      line-height: 1.4;
     }
-    .place-item a, .book-appointment {
+
+    .place-item .rating {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      color: #e67e22;
+      margin: 10px 0;
+    }
+
+    /* Attractive Button */
+    .place-item a {
       display: inline-block;
-      margin-top: 15px;
-      padding: 10px 16px;
-      background-color: #3498db;
+      padding: 10px 20px;
+      background: #4a90e2;
       color: #fff;
       text-decoration: none;
-      border-radius: 6px;
+      border-radius: 30px;
       font-size: 14px;
       font-weight: 500;
-      transition: background-color 0.3s;
+      transition: background 0.3s ease, transform 0.3s ease;
     }
-    .place-item a:hover, .book-appointment:hover {
-      background-color: #2980b9;
+
+    .place-item a:hover {
+      background: #357ab7;
+      transform: translateY(-2px);
+    }
+
+    /* Loading Skeleton */
+    .loading-skeleton {
+      animation: pulse 1.5s infinite;
+      background: linear-gradient(90deg, #e0e0e0 25%, #f2f2f2 50%, #e0e0e0 75%);
+      background-size: 200% 100%;
+      border-radius: 12px;
+      height: 120px;
+      margin-bottom: 20px;
+    }
+
+    @keyframes pulse {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+        height: auto;
+      }
+
+      #map-container {
+        height: 400px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Find My Doctor</h1>
-  <div id="map"></div>
-  <div id="list"></div>
+<header>
+        <div class="logo-container">
+            <img src="SheCareLogo1.jpg" alt="SheCare" class="logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="https://shecare.onrender.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-capsules"></i>PillPickr</a></li>
+                <li><a href="faq.html"><i class="fas fa-question-circle"></i>FAQ</a></li>
+                <li><a href="methods.html"><i class="fas fa-heartbeat"></i>Contraceptives</a></li>
+                <li><a href="oc.html"><i class="fas fa-calendar-alt"></i>Track Cycle</a></li>
+                <li><a href="find_my_doctor.html"><i class="fas fa-calendar-alt"></i>DocFinder</a></li>
+                <li><a href="find_my_pharmacy.html"><i class="fas fa-calendar-alt"></i>FindPharm</a></li>
+                <li><a href="bot.html"><i class="fas fa-comments"></i>HerBot</a></li>
+                <li><a href="https://santos21978.softr.app/" target="_blank"><i class="fas fa-users"></i>Forum</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="main-content">
+    <div id="list-container">
+      <h1>Find My Doctor</h1>
+      <div id="list">
+        <!-- Initial loading skeletons -->
+        <div class="loading-skeleton"></div>
+        <div class="loading-skeleton"></div>
+        <div class="loading-skeleton"></div>
+      </div>
+    </div>
+    <div id="map-container">
+      <div id="map"></div>
+    </div>
+  </div>
+
+  
+
   
   <script>
     let map;
@@ -109,7 +319,13 @@
         alert("Geolocation is not supported by your browser.");
       }
     }
-
+function getLoadingSkeletons() {
+      let skeletons = "";
+      for (let i = 0; i < 3; i++) {
+        skeletons += '<div class="loading-skeleton"></div>';
+      }
+      return skeletons;
+    }
     function searchNearbyPlaces(location) {
       const request = {
         location: location,
@@ -126,22 +342,56 @@
     }
 
     function displayResults(results) {
-      const listElement = document.getElementById("list");
-      listElement.innerHTML = "";
+  const listElement = document.getElementById("list");
+  listElement.innerHTML = "";
 
-      results.forEach((place) => {
-        const placeItem = document.createElement("div");
-        placeItem.className = "place-item";
-        placeItem.innerHTML = `
-          <h3>${place.name}</h3>
-          <p>Address: ${place.vicinity}</p>
-          <p>Rating: ${place.rating || "N/A"}</p>
-          <a href="https://www.google.com/maps/dir/?api=1&destination=${place.geometry.location.lat()},${place.geometry.location.lng()}" target="_blank">Get Directions</a>
-          <a class="book-appointment" href="book-appointment.html?doctor=${encodeURIComponent(place.name)}">Book Appointment</a>
-        `;
-        listElement.appendChild(placeItem);
-      });
+  results.forEach((place) => {
+    const placeItem = document.createElement("div");
+    placeItem.className = "place-item";
+    placeItem.innerHTML = `
+      <h3>${place.name}</h3>
+      <p>Address: ${place.vicinity}</p>
+      <div class="rating">
+            Rating: ${place.rating || "N/A"} ${generateStarRating(place.rating)}
+          </div>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=${place.geometry.location.lat()},${place.geometry.location.lng()}" target="_blank">Get Directions</a>
+      <a class="book-appointment" href="book-appointment.html?doctor=${encodeURIComponent(place.name)}">Book Appointment</a>
+    `;
+
+    listElement.appendChild(placeItem);
+
+    // Add Marker on the Map
+    const marker = new google.maps.Marker({
+      position: place.geometry.location,
+      map: map,
+      title: place.name,
+    });
+
+    // Show location on map when clicked
+    placeItem.addEventListener("click", () => {
+      map.setCenter(place.geometry.location);
+      map.setZoom(15);
+
+      infowindow.setContent(`
+        <div>
+          <strong>${place.name}</strong><br>
+          Address: ${place.vicinity}<br>
+         <div class="rating">
+            Rating: ${place.rating || "N/A"} ${generateStarRating(place.rating)}
+          </div>
+        </div>
+      `);
+      infowindow.open(map, marker);
+    });
+  });
+}
+ function generateStarRating(rating) {
+      if (!rating) return "⭐";
+      const fullStars = Math.floor(rating);
+      const halfStar = rating % 1 >= 0.5 ? "½" : "";
+      return "⭐".repeat(fullStars) + halfStar;
     }
+    
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlk3LpfE0zEmovF3GZGrl9WUYaxnjT46o&libraries=places&callback=initMap" async defer></script>
 </body>
