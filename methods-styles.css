@@ -3,6 +3,13 @@ body,
 ul {
     margin: 0;
     padding: 0;
+    
+}
+:root {
+  --primary: #7C4DFF;
+  --secondary: #FF4081;
+  --background: #f8f5fe;
+  --text: #2A2A2A;
 }
 
 /* Header styles */
@@ -87,22 +94,44 @@ nav a i {
 }
 /* Body Control section styles */
 .body-control {
-    background-color: #f0e3f5;
+   /* Define the initial colors using custom properties */
+   --color1: #938db3;
+   --color2: #e8e6e5;
+   --color3: #eacff5;
+   --color4: #f7dedf;
+   
+    /* Apply both animations: one for moving the gradient and one for changing colors */
+  animation: GradientAnimation 15s ease infinite, ColorChangeAnimation 15s ease infinite;
+  background: linear-gradient(270deg, var(--color1), var(--color2), var(--color3), var(--color4));
     text-align: center;
     padding: 10px 0px;
     position: relative; /* Add position relative */
   }
   
   .body-control-content {
-    font-family: 'Avenir Next W01', Helvetica, Arial, sans-serif;
-    top: 0;
-    right: 100%; /* Initially off screen */
-    width: 100%;
+    position: relative;
+    
   }
   
-  .body-control-content.show {
-    right: 0; /* Slide in from right when show class is applied */
+  @keyframes slideInBounce {
+    0% {
+      right: -100%;
+      opacity: 0;
+    }
+    60% {
+      right: 10px;
+      opacity: 1;
+    }
+    80% {
+      right: -5px;
+    }
+    100% {
+      right: 0;
+    }
   }
+  .body-control-content.show {
+  animation: slideInBounce 0.8s forwards ease-out;
+}
   
   .body-control-content h2 {
     font-size: 55px;
@@ -143,14 +172,49 @@ nav a i {
     background-color: #e251be ; /* Light pink background color on hover */
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow effect on hover */
   }
-  /* Box container styles */
+/* Box container styles */
 .boxes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 50px; /* Adjust spacing between the existing content and the boxes */
-  }
+ 
+ background-color: var(--background);
   
+  /* Ensure the gradient is large enough for a smooth position animation */
+  background-size: 400% 400%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+ 
+
+/* Animation for moving the gradient */
+@keyframes GradientAnimation {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Animation for changing the gradient colors */
+@keyframes ColorChangeAnimation {
+  0% {
+    --color1: #938db3;
+    --color2: #e8e6e5;
+    --color3: #f0e3f5;
+    --color4: #f5eded;
+  }
+  50% {
+    --color1: #fbd2d4;
+    --color2: #f0e3f5;
+    --color3: #e8e6e5;
+    --color4: #938db3;
+  }
+  100% {
+    --color1: #938db3;
+    --color2: #f0e3f5;
+    --color3: #eff2f5;
+    --color4: #9aceff;
+  }
+}
+
   /* Individual box styles */
   .box {
     width: 300px;
@@ -163,8 +227,13 @@ nav a i {
     display: flex; /* Use flexbox to divide the box vertically */
   flex-direction: column; /* Stack the sections vertically */
   transition: transform 0.3s ease; /* Add transition for smooth animation */
-}
   
+}
+
+.box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 32px rgba(0, 40, 110, 0.2);
+}
   .box .section {
     flex: 1; /* Each section takes up equal space */
     display: flex; /* Nested flexbox to center text vertically */
@@ -224,12 +293,18 @@ nav a i {
 
   /* CSS styles for the link */
   .box .lower-section a {
-    color: #46a2ed; /* Inherit color from parent */
-    margin-top: 25px; /* Adjust spacing between elements */
-    font-size:20px ;
-    font-family: 'Avenir Next W01';
-    margin-bottom: 0px;
-  }
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: white; /* White background */
+    color: #7C4DFF; /* Purple text */
+    text-decoration: none;
+    border-radius: 30px; /* Rounded button */
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
   .box .lower-section:hover {
     transform: scale(1.1); /* Increase size by 10% on hover */
   }
